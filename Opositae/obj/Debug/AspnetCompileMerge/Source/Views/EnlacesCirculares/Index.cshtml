@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Inicio</li>
+    <li class="breadcrumb-item active">Enlaces Circulares</li>
+</ol>
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h5>Titulo De Enlaces Circulares</h5>
+            <hr />
+            @using (Html.BeginForm("Edit", "EnlacesCirculares", FormMethod.Post, htmlAttributes: new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+        <div class="form-group col-md-12">
+
+             @foreach (var item in Model)
+             {
+                 if (item.idEnviado == "TituloEnlacesCirculares")
+                 {
+
+                    <input type="hidden" name="EnlaceId" value="@item.EnlaceId" />
+                    <input type="hidden" name="idEnviado" value="@item.idEnviado" />
+
+                    <fieldset class="form-group col-md-3">
+                        <label class="control-label">Texto</label>
+                        <input type="text" name="texto" value="@item.texto" class="form-control col-md-4">
+                        @Html.ValidationMessage(@item.texto)
+                    </fieldset>
+                    <fieldset class="form-group col-md-3">
+                        <label class="control-label">Icono</label>
+                        <input type="text" name="claseCss" value="@item.claseCss" class="form-control col-md-4">
+                        @Html.ValidationMessage(@item.claseCss)
+                    </fieldset>
+                 }
+             }
+        </div>
+            
+        <div class="clearfix"></div>
+
+        <div class="text-right">
+            <button type="submit" class="btn btn-success">
+                <i class="material-icons btn__icon--left">create</i> Guardar
+            </button>
+        </div>
+}
+        </div>
+        
+        
+        
+</div></div>
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h5>Enlaces Circulares</h5>
+            <hr />
+
+            <p>
+                @Html.ActionLink("Nuevo Enlace Circular", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.texto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.anteEnlace)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.accion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.controlador)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.claseCss)
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.idEnviado != "TituloEnlacesCirculares") //El titulo de los enlaces no se editara aqui
+                    {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.texto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.anteEnlace)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.accion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.controlador)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.claseCss)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+                        </td>
+                    </tr>
+                    }
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>

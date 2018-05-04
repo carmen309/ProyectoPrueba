@@ -1,0 +1,104 @@
+﻿@model Opositae.Models.Pregunta
+
+@{
+    ViewBag.Title = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string respuesta = "A";
+}
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Preguntas")">Preguntas</a></li>
+    <li class="breadcrumb-item active">Crear</li>
+
+</ol>
+<div class="row">
+    <div class="text-right margin-b-10">
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Preguntas")'">
+            <i class="material-icons btn__icon--left">arrow_back</i> Volver
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <h5>Crear pregunta</h5>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                var errors = ViewData.ModelState.Where(n => n.Value.Errors.Count > 0).ToList();
+                var error = "";
+                if (errors.Count() > 0) { error = errors[0].Value.Errors[0].ErrorMessage; }
+                <div style="font-size:large;color:red;">@error</div>
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Categoria, new { @class = "control-label" })
+                    @Html.DropDownList("Categoria", null, htmlAttributes: new { @class = "form-control", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(model => model.Categoria)
+                </fieldset>
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Dificultad, new { @class = "control-label" })
+                    @Html.DropDownList("Dificultad", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Dificultad)
+                </fieldset>
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Texto, new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.Texto, new { @class = "form-control", @style = "height:100px; width:100%" })
+                    @Html.ValidationMessageFor(model => model.Texto)
+                </fieldset>
+
+                for (int i = 1; i < 5; i++)
+                {
+                    <fieldset class="form-group">
+                        @Html.Label("Respuesta " + respuesta, new { @class = "control-label" })
+                        <label class="control-label text-right" style="float:right;">
+                            @Html.RadioButton("Correcta", respuesta, new { @checked = "checked" })
+                            Correcta
+                        </label>
+                        @Html.TextArea("Respuesta" + respuesta, new { @class = "form-control", @style = "height:100px; width:100%" })
+                    </fieldset>
+                    switch (respuesta)
+                    {
+                        case "A":
+                            respuesta = "B";
+                            break;
+                        case "B":
+                            respuesta = "C";
+                            break;
+                        case "C":
+                            respuesta = "D";
+                            break;
+                        default:
+                            respuesta = "A";
+                            break;
+                    }
+                }
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.JustificacionRespuesta, "Justificación de la respuesta correcta", new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.JustificacionRespuesta, new { @class = "form-control", @style = "height:100px; width:100%" })
+                    @Html.ValidationMessageFor(model => model.JustificacionRespuesta)
+                </fieldset>
+
+                <fieldset class="form-check">
+                    @Html.CheckBoxFor(model => model.Activa, new { @checked = "checked" })
+                    @Html.LabelFor(model => model.Activa, new { @class = "control-label" })
+
+                    @Html.ValidationMessageFor(model => model.Activa)
+                </fieldset>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success">
+                        <i class="material-icons btn__icon--left">add</i> Guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

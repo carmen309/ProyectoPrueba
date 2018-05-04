@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+@{
+
+    Layout = null; //Para que no pille el general
+}
+
+
+
+<div class="container">
+    <div class="group-title-index">
+        @foreach (var item in Model)
+        {
+            if (item.idEnviado == "TituloEnlacesCirculares")
+            {
+                <h2 class="center-title">@item.texto</h2>
+
+                <div class="bottom-title"><i class="bottom-icon fa @item.claseCss"></i></div>
+            }
+        }
+
+
+        <!--<h2 class="center-title">¡APRUEBA TU OPOSICIÓN! TENEMOS UN AMPLIO ABANICO DE FORMAS PARA AYUDARTE A CONSEGUIRLO</h2>
+
+        <div class="bottom-title"><i class="bottom-icon fa fa-institution"></i></div>-->
+    </div>
+    <div class="choose-course-wrapper row">
+
+
+        @foreach (var item in Model)
+        {
+            if (item.idEnviado != "TituloEnlacesCirculares")
+            {
+
+        <div class="col-md-4 col-xs-6">
+            <div class="item-course item-1">
+                <div class="icon-circle">
+                    <div class="icon-background"><i class="icons-img fa @item.claseCss"></i></div>
+                    <div class="info">
+                        <div class="info-back"><a href="@Url.Action(item.accion, item.controlador)">@item.anteEnlace</a></div>
+                    </div>
+                </div>
+                <div class="name-course"><a href="@Url.Action(item.accion, item.controlador)">@item.texto</a><i class="fa fa-long-arrow-right"></i></div>
+            </div>
+        </div>
+            }
+        }
+
+
+    </div>
+</div>
+
+
+
+<!--<div class="container">
+    <div class="group-title-index">
+
+        <h2 class="center-title">¡APRUEBA TU OPOSICIÓN! TENEMOS UN AMPLIO ABANICO DE FORMAS PARA AYUDARTE A CONSEGUIRLO</h2>
+
+        <div class="bottom-title"><i class="bottom-icon fa fa-institution"></i></div>
+    </div>
+    <div class="choose-course-wrapper row">
+        <div class="col-md-4 col-xs-6">
+            <div class="item-course item-1">
+                <div class="icon-circle">
+                    <div class="icon-background"><i class="icons-img fa fa-newspaper-o"></i></div>
+                    <div class="info">
+                        <div class="info-back"><a href="@Url.Action("Blog", "Home")">Consulta las últimas entradas de nuestro blog</a></div>
+                    </div>
+                </div>
+                <div class="name-course"><a href="@Url.Action("Blog", "Home")">Blog</a><i class="fa fa-long-arrow-right"></i></div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-6">
+            <div class="item-course item-2">
+                <div class="icon-circle">
+                    <div class="icon-background"><i class="icons-img fa fa-download"></i></div>
+                    <div class="info">
+                        <div class="info-back"><a href="@Url.Action("Recursos", "Home")">La mejor ayuda para aprender y practicar</a></div>
+                    </div>
+                </div>
+                <div class="name-course"><a href="@Url.Action("Recursos", "Home")">Recursos</a><i class="fa fa-long-arrow-right"></i></div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-6">
+            <div class="item-course item-3">
+                <div class="icon-circle">
+                    <div class="icon-background"><i class="icons-img fa fa-legal"></i></div>
+                    <div class="info">
+                        <div class="info-back"><a href="@Url.Action("Legislacion", "Home")">Consulta la legislación referente a tu oposición</a></div>
+                    </div>
+                </div>
+                <div class="name-course"><a href="@Url.Action("Legislacion", "Home")">Legislación</a><i class="fa fa-long-arrow-right"></i></div>
+            </div>
+        </div>
+
+    </div>
+</div>-->
+

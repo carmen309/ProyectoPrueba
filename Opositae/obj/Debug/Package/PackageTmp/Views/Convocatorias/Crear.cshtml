@@ -1,0 +1,92 @@
+﻿@model Opositae.Models.Convocatoria
+
+
+@{
+    ViewBag.Title = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Convocatorias")">Convocatorias</a></li>
+    <li class="breadcrumb-item active">Crear</li>
+</ol>
+<div class="row">
+    <div class="text-right margin-b-10">
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Convocatorias")'">
+            <i class="material-icons btn__icon--left">arrow_back</i> Volver
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <h5>Crear convocatoria</h5>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Fecha, new { @class = "control-label" })
+                    @Html.TextBoxFor(x => x.Fecha, "{0:dd-MM-yyy}", new { @class="form-control", @type="date"})
+                    @Html.ValidationMessageFor(model => model.Fecha)
+                </fieldset>
+                
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Descripcion, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(model => model.Descripcion)
+                </fieldset>
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Entidad, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Entidad, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Entidad)
+                </fieldset>
+                
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Acceso, new { @class = "control-label" })
+                    @Html.DropDownList("Acceso", null, htmlAttributes: new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Acceso)
+                </fieldset>
+                
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Plazas, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Plazas, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Plazas)
+                </fieldset>
+                
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Grupo, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Grupo, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Grupo)
+                </fieldset>
+                
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Enlace, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Enlace, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Enlace)
+                </fieldset>
+
+                <fieldset class="form-check">
+                    @Html.CheckBoxFor(model => model.Activa, new { @checked = "checked" })
+                    @Html.LabelFor(model => model.Activa, new { @class = "control-label" })
+
+                    @Html.ValidationMessageFor(model => model.Activa)
+                </fieldset>
+
+
+
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success">
+                        <i class="material-icons btn__icon--left">add</i> Guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

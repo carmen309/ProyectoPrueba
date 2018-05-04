@@ -1,0 +1,136 @@
+﻿@model Opositae.Models.ItemEslider
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Slider</h2>
+
+@using (Html.BeginForm("Edit", "ItemEsliders", FormMethod.Post, htmlAttributes: new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-7 forbordeado" style="margin:10px;">
+            <h4>Datos del Slider </h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.titulo, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.ItemEsliderId, new { Value = ViewBag.idit })
+            <div class="form-group">
+                @Html.LabelFor(model => model.subtitulo, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.subtitulo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.subtitulo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.texto, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.texto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.texto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <!--imagenes -->
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4 .forbordeado mt-3">
+            <hr />
+            <h4>Imagen del Slider</h4>
+            <hr />
+            <div class="col-md-10 ">
+                <div id="image-holder" style="/*margin-top:100px;*/">
+                    <img src=@ViewBag.imagenes.imagenPath() alt="Sample Image" style="position:absolute;/*top:-65px;left:160px;*/width:125px;height:80px;cursor:pointer " />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="file" name="files[0]" id="fileUpload" style="opacity:0.0;width:125px;height:80px;overflow:hidden;position:absolute;/*top:-65px;left:170px;*/cursor:pointer" />
+                </div>
+            </div>
+        </div>
+        <!--Enlace-->
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-7 forbordeado">
+            <hr />
+            <h4>Datos del enlace</h4>
+            <hr />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.enlace.anteEnlace, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.enlace.anteEnlace, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.enlace.anteEnlace, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.enlace.texto, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.enlace.texto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.enlace.texto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.enlace.accion, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.enlace.accion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.enlace.accion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.enlace.controlador, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.enlace.controlador, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.enlace.controlador, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.enlace.idEnviado, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.enlace.idEnviado, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.enlace.idEnviado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.enlace.claseCss, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.enlace.claseCss, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.enlace.claseCss, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @if (ViewBag.padre != null)
+                {
+                    @Html.HiddenFor(model => model.enlace.enlacePadre, new { Value = (object)ViewBag.padre.ToString() })
+                }
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.enlace.situacion, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.enlace.situacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.enlace.situacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <!--div para cargar el preview de la imagen-->
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Volver", "Index")
+                <input type="submit" value="Editar Slider" class="btn btn-default" />
+
+            </div>
+        </div>
+    </div>
+}
+

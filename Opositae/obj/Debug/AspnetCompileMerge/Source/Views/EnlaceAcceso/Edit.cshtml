@@ -1,0 +1,94 @@
+﻿@model Opositae.Models.Enlace
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Enlace De Acceso</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Datos del Enlace</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.EnlaceId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.texto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.texto)
+                @Html.ValidationMessageFor(model => model.texto)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.anteEnlace, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.anteEnlace)
+                @Html.ValidationMessageFor(model => model.anteEnlace)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.accion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.accion)
+                @Html.ValidationMessageFor(model => model.accion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.controlador, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.controlador)
+                @Html.ValidationMessageFor(model => model.controlador)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idEnviado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.idEnviado)
+                @Html.ValidationMessageFor(model => model.idEnviado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.claseCss, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.claseCss)
+                @Html.ValidationMessageFor(model => model.claseCss)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.enlacePadre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.enlacePadre)
+                @Html.ValidationMessageFor(model => model.enlacePadre)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.situacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.situacion)
+                @Html.ValidationMessageFor(model => model.situacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>

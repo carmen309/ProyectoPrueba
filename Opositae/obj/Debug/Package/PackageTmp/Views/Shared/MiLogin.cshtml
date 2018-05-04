@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Opositae</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div> 
+        @RenderBody();
+    </div>
+</body>
+</html>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/mdk")
+@Scripts.Render("~/bundles/sidebarcollapse")
+@Scripts.Render("~/bundles/appjs")
+@RenderSection("scripts", required: false)

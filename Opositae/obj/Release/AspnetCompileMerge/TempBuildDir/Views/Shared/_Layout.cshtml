@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Opositae</title>
+    @Styles.Render("~/Content/css")
+    @{
+        if (Session["mopt"] == null)
+        {
+            Session["mopt"] = "0";
+        }
+        string activa = "active";
+    }
+    <style>
+        li ul li.especialEspaciado {
+            margin-left: 35px;
+        }
+    </style>
+</head>
+<body class="top-navbar">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-primary navbar-full navbar-fixed-top">
+        <!-- Toggle sidebar -->
+        <button class="navbar-toggler" type="button" data-toggle="sidebar" data-taget="#menubar" aria-controls="menubar"></button>
+        <!-- Brand -->
+
+        <a href="@Url.Action("Inicio", "Home")" class="navbar-brand">
+            <img src="~/Images/logo.png" />
+        </a>
+
+
+        <div class="navbar-spacer"></div>
+
+        @Html.Partial("_LoginPartial")
+        <!--
+         <ul class="nav navbar-nav">
+
+
+             <li class="nav-item dropdown">
+                 <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"><img src="assets/images/people/50/guy-6.jpg" alt="Avatar" class="rounded-circle" width="40"></a>
+                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
+                     <a class="dropdown-item" href="student-account-edit.html">
+                         <i class="material-icons">edit</i> Edit Account
+                     </a>
+                     <a class="dropdown-item" href="student-profile.html">
+                         <i class="material-icons">person</i> Public Profile
+                     </a>
+                     <a class="dropdown-item" href="guest-login.html">
+                         <i class="material-icons">lock</i> Logout
+                     </a>
+                 </div>
+             </li>
+
+         </ul>
+        -->
+
+    </nav>
+    <!-- // END Navbar -->
+    <div class="mdk-drawer-layout mdk-js-drawer-layout" push has-scrolling-region>
+        <div class="mdk-drawer-layout__content">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Sidebar -->
+        <div class="mdk-drawer mdk-js-drawer" id="default-drawer">
+            <div class="mdk-drawer__content ">
+                <div id="menubar" class="sidebar sidebar-left sidebar-light sidebar-transparent-sm-up sidebar-p-y">
+
+                    <div class="sidebar-heading">Administración</div>
+                    <ul class="sidebar-menu">
+                        @{activa = (Session["mopt"].ToString() == "preguntas") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "Preguntas")">
+                                <i class="sidebar-menu-icon material-icons">dvr</i> Preguntas
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="sidebar-heading">Ficheros Maestros</div>
+                    <ul class="sidebar-menu">
+                        @{activa = (Session["mopt"].ToString() == "oposiciones") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "Oposiciones")">
+                                <i class="sidebar-menu-icon material-icons">dvr</i> Oposiciones
+                            </a>
+                        </li>
+                        @{activa = (Session["mopt"].ToString() == "categoriasoposiciones") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "CategoriasOposiciones")">
+                                <i class="sidebar-menu-icon material-icons">label</i> Categorías Oposiciones
+                            </a>
+                        </li>
+                        @{activa = (Session["mopt"].ToString() == "dificultades") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "Dificultades")">
+                                <i class="sidebar-menu-icon material-icons">timeline</i> Dificultades Oposiciones
+                            </a>
+                        </li>
+                        @{activa = (Session["mopt"].ToString() == "categoriasblog") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "CategoriasBlog")">
+                                <i class="sidebar-menu-icon material-icons">label</i> Categorías Blog
+                            </a>
+                        </li>
+                    </ul>
+
+
+                    <div class="sidebar-heading">Web</div>
+                    <ul class="sidebar-menu">
+                        @{activa = (Session["mopt"].ToString() == "inicio") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+
+                            <a class="sidebar-menu-button" href="#">
+                                <i class="sidebar-menu-icon material-icons">home</i> Inicio
+                            </a>
+
+                            <ul>
+                                <li class="especialEspaciado"><a href="@Url.Action("Index", "Menu1")">Menu1</a></li>
+                                <li class="especialEspaciado"><a href="@Url.Action("Index", "Menu2")">Menu2</a></li>
+                                <li class="especialEspaciado"><a href="@Url.Action("Index", "MensajeCabecera")">Cuadro Cabecera</a></li>
+                                <li class="especialEspaciado"><a href="@Url.Action("index", "ItemEsliders")">Slideshow</a></li>
+                                <li class="especialEspaciado"><a href="@Url.Action("index", "EnlacesCirculares")">Enlaces Circulares</a></li>
+                                <li class="especialEspaciado"><a href="@Url.Action("index", "EnlacesMejorados")">Cuadro Publicitario</a></li>
+                                <li class="especialEspaciado"><a href="@Url.Action("index", "NosotrosIconos")">Iconos</a></li>
+                                <li class="especialEspaciado"><a href="@Url.Action("index", "EnlaceAcceso")">Enlace De Acceso</a></li>
+                                <li class="especialEspaciado"><a href="@Url.Action("Index", "PiePagina")">Pie De Página</a></li>
+                            </ul>
+
+                        </li>
+
+                        @{activa = (Session["mopt"].ToString() == "nosotros") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "Nosotros")">
+                                <i class="sidebar-menu-icon material-icons">account_balance</i> Nosotros
+                            </a>
+                        </li>
+                        @{activa = (Session["mopt"].ToString() == "blog") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "Blog")">
+                                <i class="sidebar-menu-icon material-icons">developer_board</i> Blog
+                            </a>
+                        </li>
+                        @{activa = (Session["mopt"].ToString() == "convocatorias") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "Convocatorias")">
+                                <i class="sidebar-menu-icon material-icons">assignment</i> Convocatorias
+                            </a>
+                        </li>
+                        @{activa = (Session["mopt"].ToString() == "legislacion") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "Legislacion")">
+                                <i class="sidebar-menu-icon material-icons">gavel</i> Legislación
+                            </a>
+                        </li>
+
+                        @{activa = (Session["mopt"].ToString() == "contacto") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "Contactos")">
+                                <i class="sidebar-menu-icon material-icons">contacts</i> Contacto
+                            </a>
+                        </li>
+
+                        @{activa = (Session["mopt"].ToString() == "recursos") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "Recursos")">
+                                <i class="sidebar-menu-icon material-icons">folder</i> Recursos
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+
+
+                    <div class="sidebar-heading">Gestión de usuarios</div>
+                    <ul class="sidebar-menu">
+                        @{activa = (Session["mopt"].ToString() == "usuarios") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "UsersAdmin")">
+                                <i class="sidebar-menu-icon material-icons">dvr</i> Usuarios
+                            </a>
+                        </li>
+                        @{activa = (Session["mopt"].ToString() == "roles") ? "active" : "";}
+                        <li class="sidebar-menu-item @activa">
+                            <a class="sidebar-menu-button" href="@Url.Action("Index", "RolesAdmin")">
+                                <i class="sidebar-menu-icon material-icons">label</i> Perfiles
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="sidebar-heading">Panel usuario</div>
+                    @{activa = (Session["mopt"].ToString() == "recursosgratuitos") ? "active" : "";}
+                    <li class="sidebar-menu-item @activa">
+                        <a class="sidebar-menu-button" href="@Url.Action("Index", "RecursosGratuitos")">
+                            <i class="sidebar-menu-icon material-icons">get_app</i> Recursos Gratuitos
+                        </a>
+                    </li>
+
+                    <div class="sidebar-heading">Cuenta</div>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="javascript:document.getElementById('logoutForm').submit()">
+                                <i class="sidebar-menu-icon material-icons">lock_open</i> Desconectar
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- // END Sidebar -->
+    </div>
+
+    <div id="modalPreguntas">
+        @RenderSection("ImportacionPreguntas", required: false)
+    </div>
+    <div id="modalEstadisticasPreguntas">
+        @RenderSection("EstadisticasPreguntas", required: false)
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/mdk")
+    @Scripts.Render("~/bundles/sidebarcollapse")
+    @Scripts.Render("~/bundles/appjs")
+    @RenderSection("scripts", required: false)
+    @RenderSection("Styles", required: false)
+</body>
+</html>
+
+
+

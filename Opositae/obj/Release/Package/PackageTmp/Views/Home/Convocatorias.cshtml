@@ -1,0 +1,162 @@
+﻿
+@model PagedList.IPagedList<Opositae.Models.Convocatoria>
+@using PagedList.Mvc;
+
+@{
+    /**/
+
+    ViewBag.Title = "Convocatorias";
+    Layout = "~/Views/Shared/_LayoutFE.cshtml";
+    Session["menuopt"] = "convocatorias";
+}
+@Html.Partial("_ImagenCabecera")
+
+<div id="MensajeCabecera">
+
+</div>
+
+
+<div class="section teacher-course section-padding">
+    <div class="container teacher-course-wrapper">
+        <div class="course-table">
+            <div class="outer-container">
+                <div class="inner-container">
+                    <div class="table-header">
+                        <table class="edu-table-responsive">
+                            <thead>
+                                <tr class="heading-table">
+                                    <th class="col-1">Oposición</th>
+                                    <th class="col-2">Entidad</th>
+                                    <th class="col-3">Acceso</th>
+                                    <th class="col-4">Plazas</th>
+                                    <th class="col-5">Grupo</th>
+                                    <th class="col-6">Enlace</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="table-body">
+                        <table class="edu-table-responsive table-hover">
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+
+                                <tr class="table-row">
+                                    <td class="col-1"><span>@item.Descripcion</span></td>
+                                    <td class="col-2"><span>@item.Entidad</span></td>
+                                    <td class="col-3"><span>@item.Acceso</span></td>
+                                    <td class="col-4"><span>@item.Plazas</span></td>
+                                    <td class="col-5"><span>@item.Grupo</span></td>                       
+                                    <td class="col-6"><a href="@item.Enlace" target="_blank"><i class="fa fa-external-link"></i></a></td>
+                                </tr>
+
+
+                                }
+
+                                <!--<tr class="table-row">
+                                    <td class="col-1"><span>Auxiliar administrativo Local 2017</span></td>
+                                    <td class="col-2"><span>Ayto Jaén</span></td>
+                                    <td class="col-3"><span>Libre</span></td>
+                                    <td class="col-4"><span>400</span></td>
+                                    <td class="col-5"><span>C2</span></td>
+                                    <td class="col-6"><span><a href="https://sede.inap.gob.es/aux-2016-ingreso-libre" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span>Auxiliar administrativo Local 2017</span></td>
+                                    <td class="col-2"><span>Ayto Jaén</span></td>
+                                    <td class="col-3"><span>Libre</span></td>
+                                    <td class="col-4"><span>400</span></td>
+                                    <td class="col-5"><span>C2</span></td>
+                                    <td class="col-6"><span><a href="https://sede.inap.gob.es/aux-2016-ingreso-libre" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span>Auxiliar administrativo Local 2017</span></td>
+                                    <td class="col-2"><span>Ayto Jaén</span></td>
+                                    <td class="col-3"><span>Libre</span></td>
+                                    <td class="col-4"><span>400</span></td>
+                                    <td class="col-5"><span>C2</span></td>
+                                    <td class="col-6"><span><a href="https://sede.inap.gob.es/aux-2016-ingreso-libre" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span>Auxiliar administrativo Local 2017</span></td>
+                                    <td class="col-2"><span>Ayto Jaén</span></td>
+                                    <td class="col-3"><span>Libre</span></td>
+                                    <td class="col-4"><span>400</span></td>
+                                    <td class="col-5"><span>C2</span></td>
+                                    <td class="col-6"><span><a href="https://sede.inap.gob.es/aux-2016-ingreso-libre" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span>Auxiliar administrativo Local 2017</span></td>
+                                    <td class="col-2"><span>Ayto Jaén</span></td>
+                                    <td class="col-3"><span>Libre</span></td>
+                                    <td class="col-4"><span>400</span></td>
+                                    <td class="col-5"><span>C2</span></td>
+                                    <td class="col-6"><span><a href="https://sede.inap.gob.es/aux-2016-ingreso-libre" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span>Auxiliar administrativo Local 2017</span></td>
+                                    <td class="col-2"><span>Ayto Jaén</span></td>
+                                    <td class="col-3"><span>Libre</span></td>
+                                    <td class="col-4"><span>400</span></td>
+                                    <td class="col-5"><span>C2</span></td>
+                                    <td class="col-6"><span><a href="https://sede.inap.gob.es/aux-2016-ingreso-libre" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span>Auxiliar administrativo Local 2017</span></td>
+                                    <td class="col-2"><span>Ayto Jaén</span></td>
+                                    <td class="col-3"><span>Libre</span></td>
+                                    <td class="col-4"><span>400</span></td>
+                                    <td class="col-5"><span>C2</span></td>
+                                    <td class="col-6"><span><a href="https://sede.inap.gob.es/aux-2016-ingreso-libre" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <nav class="pagination col-md-12">
+
+                            <nav class="text-xs-center">
+                                <span class="paginationTxt">Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount </span>
+                                @Html.PagedListPager(Model, page => Url.Action("Index", "Home/Convocatorias", new { page }))
+                            </nav>
+
+                            <!--  <ul class="pagination__list">
+                                  <li><a rel="prev" href="#" class="pagination__previous btn-squae disable">&#8249;</a></li>
+                                  <li><span class="pagination__page btn-squae active">1</span></li>
+                                  <li><a href="#" class="pagination__page btn-squae">2</a></li>
+                                  <li><a href="#" class="pagination__page btn-squae">...</a></li>
+                                  <li><a href="#" class="pagination__page btn-squae">14</a></li>
+                                  <li><a rel="next" href="#" class="pagination__next btn-squae">&#8250;</a></li>
+                              </ul>-->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        //DAR CLASES A LA PAGINACION
+        $(document).ready(function () {
+
+            $(".paginationTxt").hide();
+            $(".pagination-container").children('ul').first().removeClass("pagination").addClass("pagination__list");
+
+
+            $('ul.pagination__list').children('li').each(function () {
+
+                $(this).addClass("pagination__page btn-squae");
+
+
+            });
+            $("#loader").hide()
+        });
+
+        
+    </script>
+
+}

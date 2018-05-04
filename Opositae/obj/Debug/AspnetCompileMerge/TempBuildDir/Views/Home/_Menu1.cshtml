@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+@{
+
+    Layout = null; //Para que no pille el general
+}
+
+
+
+
+<div class="topbar-left pull-left">
+    @foreach (var item in Model)
+    {
+        if (item.idEnviado == "Correo")
+        {
+
+            <div class="email"><a style="cursor:default; text-decoration:none;"><i class="topbar-icon fa @item.claseCss"></i><span>@item.texto</span></a></div>
+                <!--<div class="hotline"><a href="#"><i class="topbar-icon fa fa-phone"></i><span>xxx xxx xxx</span></a></div>-->
+
+        }
+    }
+
+</div>
+
+<div class="topbar-right pull-right">
+    <div class="socials">
+
+        @foreach (var item in Model)
+        {
+            if (item.idEnviado == "RedSocial1")
+            {
+                <a href="@item.Imprimete()" class="facebook" target="_blank"><i class="fa @item.claseCss"></i></a>
+
+            }
+            if (item.idEnviado == "RedSocial2")
+            {
+                <a href="@item.Imprimete()" class="google" target="_blank"><i class="fa @item.claseCss"></i></a>
+
+            }
+            if (item.idEnviado == "RedSocial3")
+            {
+                <a href="@item.Imprimete()" class="twitter" target="_blank"><i class="fa @item.claseCss"></i></a>
+
+            }
+        }
+    </div>
+    <div class="group-sign-in">
+
+        @foreach (var item in Model)
+        {
+
+            if (!Request.IsAuthenticated)
+            {
+
+                if (item.idEnviado == "EnlaceRegistrarse")
+                {
+
+                    <a href="@item.Imprimete()" class="login"><i class="fa @item.claseCss"></i>@item.texto</a>
+
+                }
+            }
+        }
+
+        @foreach (var item in Model)
+        {
+
+
+            if (item.idEnviado == "EnlaceLogin")
+            {
+                if (Request.IsAuthenticated)
+                {
+                    <a href="@Url.Action("Opositor","Account")" class="login">Hola @User.Identity.Name</a>
+                    <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Cerrar</a>
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                    }
+
+                }
+                else
+                {
+                    <a href="@item.Imprimete()" class="login"><i class="fa @item.claseCss"></i>@item.texto</a>
+                }
+
+            }
+
+           
+        }
+    </div>
+</div>
+
+
+
+
+
+
+<!--<div class="topbar-left pull-left">
+
+        <div class="email"><a href="#"><i class="topbar-icon fa fa-envelope-o"></i><span>info@opositae.com</span></a></div>
+        <div class="hotline"><a href="#"><i class="topbar-icon fa fa-phone"></i><span>xxx xxx xxx</span></a></div>
+
+    </div>
+
+<div class="topbar-right pull-right">
+    <div class="socials">
+        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+    </div>
+    <div class="group-sign-in">
+        <a href="@Url.Action("Login","Account")" class="login"><i class="fa fa-sign-in"></i> login</a>
+    </div>
+</div>-->

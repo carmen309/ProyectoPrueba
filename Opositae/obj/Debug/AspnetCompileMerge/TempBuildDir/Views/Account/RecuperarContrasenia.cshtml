@@ -1,0 +1,67 @@
+﻿@model IdentitySample.Models.ForgotPasswordViewModel
+
+@{
+    ViewBag.Title = "Recuperar Contraseña";
+    Layout = Layout = "~/Views/Shared/MiLogin.cshtml";
+}
+<div class="row login">
+    <div class="col-sm-8 push-sm-1 col-md-4 push-md-4 col-lg-4 push-lg-4">
+        <div class="text-xs-center m-2">
+            <div class="icon-block rounded-circle">
+                <img src="~/Images/login-icon-backend.png" />
+                <!--i class="material-icons md-36 text-muted">lock</!--i>-->
+            </div>
+        </div>
+        <div class="card bg-transparent">
+            <div class="card-header bg-white text-xs-center">
+                <h4 class="card-title">Recuperación De La Contraseña</h4>
+                <p class="card-subtitle">Accede a tu cuenta</p>
+            </div>
+            <div class="p-2">
+
+
+                @using (Html.BeginForm("RecuperarContrasenia", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Introduce tu correo.</h4>
+                    <hr />
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+
+                    </div>
+
+                    if (!string.IsNullOrWhiteSpace(ViewBag.enlaceConfirmar)) //Si el usuario no esta validado....
+                    {
+                        <div class="alert alert-info">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i><a id="enlaceConfirma" style="color:red;" href="javaScript:enviarConfirmacionEmail()">Enviar enlace de confirmaci&oacute;n</a>
+                        </div>
+
+                    }
+
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-block-text btn-primary btn-block " value="Recuperar Contraseña" />
+                    </div>
+
+                    <!-- VALORES PARA SACAR EL ENLACE DE CONFIRMACION CON JAVA SCRIPT -->
+                    <input type="hidden" id="uidEnvio" value="@ViewBag.enlaceConfirmarid" />
+                    <input type="hidden" id="enlaceEnvio" value="@ViewBag.enlaceConfirmar" />
+
+                }
+            </div>
+            <div class="card-footer text-xs-center bg-white">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/misScripts")
+
+}
+
+

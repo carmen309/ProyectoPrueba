@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<Opositae.Models.Convocatoria>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Convocatorias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Session["mopt"] = "convocatorias";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+    <li class="breadcrumb-item active">Convocatorias</li>
+</ol>
+<div class="row">
+    <p class="text-right">
+        <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Crear", "Convocatorias")'">
+            <i class="material-icons btn__icon--left">add</i> Crear
+        </button>
+    </p>
+
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Entidad</th>
+                    <th>Acceso</th>
+                    <th>Plazas</th>
+                    <th>Grupo</th>
+                    <th class="hidden-md-down">
+                        Activa
+                    </th>
+                    <th class="lastcol">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Entidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Acceso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Plazas)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grupo)
+                        </td>
+                        <td class="hidden-md-down">
+                            @Html.DisplayFor(modelItem => item.Activa)
+                        </td>
+                        <td class="lastcol">
+                            <button type="button" class="btn btn-primary btn-only-icon" onclick="location.href='@Url.Action("Editar", "Convocatorias", new { id = item.Id })'">
+                                <i class="material-icons btn__icon--left">create</i>
+                            </button>
+                            <button type="button" class="btn btn-info btn-only-icon" onclick="location.href='@Url.Action("Ver", "Convocatorias", new { id = item.Id })'">
+                                <i class="material-icons btn__icon--left">visibility</i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-only-icon" onclick="location.href='@Url.Action("Borrar", "Convocatorias", new { id = item.Id })'">
+                                <i class="material-icons btn__icon--left">delete</i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <nav class="text-xs-center">
+            <span class="paginationTxt">Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount </span>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </nav>
+    </div>
+</div>

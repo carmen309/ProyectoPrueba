@@ -1,0 +1,115 @@
+﻿@model IdentitySample.Models.ApplicationUser 
+@{
+
+    Layout = null;
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset class="group-border">
+                <legend class="group-border"><i class="fa fa-user"></i> Mis Datos</legend>
+
+                <div class="row" style="margin-top:2%;">
+                    <div class="col-lg-8">
+                        <label class="control-label" for="Name">Email</label>
+                        <input class="form-control input-sm" disabled="disabled" id="Name" name="Name" placeholder="Nome Documento" value="@Model.Email" type="text">
+                    </div>
+                    <div style="float: left;" class="col-lg-4">
+                        <label class="control-label" for="Date">Fecha Inicio</label>
+                        <input class="form-control input-sm" data-val="true" data-val-date="The field Data Documento must be a date." data-val-required="O campo Data Documento é necessário." disabled="disabled" id="Date" name="Date" placeholder="dd/MM/yyyy" value="25/08/2015 15:03:26" type="text">
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-4">
+
+                        <label class="control-label" for="NumDoc">Nombre</label>
+                        <input class="form-control " id="NumDoc" name="NumDoc" placeholder="Nombre" value="Lola" type="text">
+
+                    </div>
+                    <div class="col-lg-4">
+
+                        <label class="control-label" for="ProcessNum">Primer Apellido</label>
+                        <input class="form-control " id="ProcessNum" name="ProcessNum" placeholder="Primer Apellido" value="Gil" type="text">
+
+                    </div>
+                    <div class="col-lg-4">
+
+                        <label class="control-label" for="State">Segundo Apellido</label>
+                        <input class="form-control " id="State" name="State" placeholder="Segundo Apellido" value="Ruano" type="text">
+
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <label class="control-label" for="Name">Dirección</label>
+                        <input class="form-control input-sm" id="Name" name="Name" placeholder="Dirección" value="C-Huerto almarcha nº18" type="text">
+                    </div>
+                    <div style="float: left;" class="col-lg-4">
+                        <label class="control-label" for="Name">Nº Telefono</label>
+                        <input class="form-control input-sm" id="Date" name="Date" placeholder="Nº Telefono" value="123456789" type="text">
+                    </div>
+                </div>
+
+                <br />
+                <a class="BotonCambiarPass" style="font-size:13px; float: left; cursor:pointer; margin-left:5px;">Cambiar Contraseña</a> <br />
+                <button class="btn btn-blue btn-bold BotonMiPlan" style="float: left;">Mi Plan</button>
+
+                <button class="btn btn-green btn-bold GuardarMiCuenta" style="float: right;">Guardar Cambios</button>
+            </fieldset>
+
+            <button class="btn BotonVolver" style="float: right;" onclick="window.location.href = '@Url.Action("Opositor", "Account")'">Volver</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog" style="width:40% ; margin-left:30%; ; margin-top:5%">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body" style="height:auto;padding:20px;">
+
+
+                    <p><b>¿Estas seguro de que deseas cambiar la contraseña?</b> </p>
+                    <div class="row">
+                        <button type="button" class="btn btn-danger BotonCancelarPass" style="float:left ; margin:5px 12px;">No , cancelar</button>
+
+
+                        @using (Html.BeginForm("RecuperarContrasenia", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()                         
+
+                            @Html.Hidden("Email", Model.Email)
+
+                            <button type="submit" class="btn btn-success" style="float:right;margin:5px 12px;">Si , deseo cambiarla</button>
+
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $("a.BotonCambiarPass").click(function () {
+
+
+        $("#myModal").modal("show");
+
+        $(".BotonCancelarPass").click(function () { //Cerrar ventana modal
+
+            $("#myModal").modal("hide");
+
+
+        });
+
+    });
+</script>

@@ -1,0 +1,82 @@
+﻿@model IdentitySample.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Iniciar sesión";
+    Layout = "~/Views/Shared/MiLogin.cshtml";
+}
+<div class="row login">
+    <div class="col-sm-8 push-sm-1 col-md-4 push-md-4 col-lg-4 push-lg-4">
+        <div class="text-xs-center m-2">
+            <div class="icon-block rounded-circle">
+                <img src="~/Images/login-icon-backend.png" />
+                <!--i class="material-icons md-36 text-muted">lock</!--i>-->
+            </div>
+        </div>
+        <div class="card bg-transparent">
+            <div class="card-header bg-white text-xs-center">
+                <h4 class="card-title">Inicio de sesión</h4>
+                <p class="card-subtitle">Accede a tu cuenta</p>
+            </div>
+            <div class="p-2">
+
+                    <!-- VALORES PARA SACAR EL ENLACE DE CONFIRMACION CON JAVA SCRIPT -->
+                    <input type="hidden" id="uidEnvio" value="@ViewBag.enlaceConfirmarid" />
+                    <input type="hidden" id="enlaceEnvio" value="@ViewBag.enlaceConfirmar" />
+
+                @if (!string.IsNullOrWhiteSpace(ViewBag.enlaceConfirmar)) //Si el usuario no esta validado....
+                {
+                    <div class="alert alert-info">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i><a id="enlaceConfirma" style="color:red;" href="javaScript:enviarConfirmacionEmail()">Enviar enlace de confirmaci&oacute;n</a>
+                    </div>
+
+                }
+
+                <section id="loginForm">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Usuario" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Contraseña" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                            <a href="@Url.Action("RecuperarContrasenia", "Account")" style="font-size:14px;display:inline-block;margin-top:6px">¿Olvidaste tu contraseña?</a><br />
+                            <a href="@Url.Action("Registrarse", "Account")" style="font-size:14px;display:inline-block;margin-top:6px">Registrarse</a>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group " style="margin-left:50%;">
+                                <section>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="rememberMe" value="true" checked="checked">
+                                        <input type="hidden" name="rememberMe" value="false" />
+                                        <i></i>Permanecer conectado
+                                    </label>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <button type="submit" class="btn  btn-primary btn-block">
+                                <span class="btn-block-text">Iniciar sesión</span>
+                            </button>
+
+                        </div>
+                    }
+
+
+                </section>
+            </div>
+            <div class="card-footer text-xs-center bg-white">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/misScripts")
+}

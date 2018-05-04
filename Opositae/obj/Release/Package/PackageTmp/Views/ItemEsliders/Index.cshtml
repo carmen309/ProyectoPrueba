@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Opositae.Models.ItemEslider>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Inicio</li>
+    <li class="breadcrumb-item active">Slideshow</li>
+</ol>
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h5>Slides</h5>
+            <hr />
+
+            <p>
+                @Html.ActionLink("Nuevo Slider", "Create", "ItemEsliders", new { @id = @ViewBag.padre }, null)
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.titulo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.subtitulo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.texto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.imagenSlider)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.titulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.subtitulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.texto)
+                        </td>
+                        <td>
+                            @if (item.imagenSlider != null)
+                            {
+                                <img src=@item.imagenSlider.imagenPath() alt="image" width=" 100" />
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.ItemEsliderId }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.ItemEsliderId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+    </div>
+        </div>
+    </div>

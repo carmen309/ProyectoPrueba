@@ -1,0 +1,76 @@
+﻿@model Opositae.Models.Oposicion
+
+@{
+    ViewBag.Title = "Ver";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Oposiciones")">Oposiciones</a></li>
+    <li class="breadcrumb-item active">Ver</li>
+</ol>
+<div class="row">
+    <div class="text-right margin-b-10">
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Oposiciones")'">
+            <i class="material-icons btn__icon--left">arrow_back</i> Volver
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <h5>Ver oposición</h5>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+
+                <dt>
+                    Categorías
+                </dt>
+                <dd>
+                    @foreach (var item in Model.OposicionesCategorias)
+                    {
+                        @Html.DisplayFor(model => item.Categoria.Nombre)
+                        <br />
+                    }
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Activa)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Activa)
+                </dd>
+
+            </dl>
+            <div class="text-right">
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Editar", "Oposiciones", new { id = Model.Id })'">
+                    <i class="material-icons btn__icon--left">create</i> Editar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

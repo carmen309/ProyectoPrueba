@@ -1,0 +1,56 @@
+﻿@model Opositae.Models.CategoriaOposicion
+
+@{
+    ViewBag.Title = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "CategoriasOposiciones")">Categorías de oposiciones</a></li>
+    <li class="breadcrumb-item active">Crear</li>
+</ol>
+<div class="row">
+    <div class="text-right margin-b-10">
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "CategoriasOposiciones")'">
+            <i class="material-icons btn__icon--left">arrow_back</i> Volver
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <h5>Crear categoría de oposición</h5>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Nombre, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Nombre, new { @class="form-control", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(model => model.Nombre)
+                </fieldset>
+              
+
+                <fieldset class="form-check">
+                    @Html.CheckBoxFor(model => model.Activa, new { @checked = "checked" })
+                    @Html.LabelFor(model => model.Activa, new { @class = "control-label" })
+
+                    @Html.ValidationMessageFor(model => model.Activa)
+                </fieldset>
+               
+
+               
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success">
+                        <i class="material-icons btn__icon--left">add</i> Guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,62 @@
+﻿@model PagedList.IPagedList<Opositae.Models.Legislacion>
+
+    @using PagedList.Mvc;
+
+    @{
+        ViewBag.Title = "Legislación";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        Session["mopt"] = "legislacion";
+    }
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Legislacion")">Inicio</a></li>
+    <li class="breadcrumb-item active">Legislación</li>
+</ol>
+<div class="row">
+    <p class="text-right">
+        <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Crear", "Legislacion")'">
+            <i class="material-icons btn__icon--left">add</i> Crear
+        </button>
+    </p>
+
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Norma</th>
+                    <th>Categoría</th>
+                    <th class="lastcol">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Norma)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+                        </td>
+                        <td class="lastcol">
+                            <button type="button" class="btn btn-primary btn-only-icon" onclick="location.href='@Url.Action("Editar", "Legislacion", new { id = item.Id })'">
+                                <i class="material-icons btn__icon--left">create</i>
+                            </button>
+                            <button type="button" class="btn btn-info btn-only-icon" onclick="location.href='@Url.Action("Ver", "Legislacion", new { id = item.Id })'">
+                                <i class="material-icons btn__icon--left">visibility</i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-only-icon" onclick="location.href='@Url.Action("Borrar", "Legislacion", new { id = item.Id })'">
+                                <i class="material-icons btn__icon--left">delete</i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <nav class="text-xs-center">
+            <span class="paginationTxt">Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount </span>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </nav>
+    </div>
+</div>

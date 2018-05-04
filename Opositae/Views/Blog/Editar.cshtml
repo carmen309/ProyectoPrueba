@@ -1,0 +1,133 @@
+﻿@model Opositae.Models.Blog
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Blog")">Blog</a></li>
+    <li class="breadcrumb-item active">Crear</li>
+</ol>
+<div class="row">
+    <div class="text-right margin-b-10">
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Blog")'">
+            <i class="material-icons btn__icon--left">arrow_back</i> Volver
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <h5>Crear entrada de blog</h5>
+            <hr />
+            @using (Html.BeginForm("Editar", "blog", FormMethod.Post, htmlAttributes: new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.CategoriaBlog, new { @class = "control-label" })
+                    @Html.DropDownList("Categoria", null, htmlAttributes: new { @class = "form-control", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(model => model.CategoriaBlog)
+                </fieldset>
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Fecha, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Fecha, "{0:dd-MM-yyyy}", new { @class = "form-control", @type = "date" })
+                    @Html.ValidationMessageFor(mode => Model.Fecha)
+                </fieldset>
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Titulo, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(mode => Model.Titulo)
+                </fieldset>
+
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Contenido, new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.Contenido, new { @class = "form-control", @style = "height:100px; width:100%", @id = "summernote" })
+                    @Html.ValidationMessageFor(model => model.Contenido)
+                </fieldset>
+
+                <!--  <fieldset class="form-group">
+                      Html.LabelFor(model => model.Contenido, new { Class = "control-label" })
+                      Html.TextAreaFor(model => model.Contenido, new { class = "form-control", style = "height:100px; width:100%" })
+                     Html.ValidationMessageFor(model => model.Contenido)
+                  </fieldset>-->
+
+                <fieldset class="form-group">
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.Imagen, new { @class = "control-label" })
+                        <input type="file" name="imagen" id="Imagen" class="form-control" />
+                        <small class="text-help">
+                            El tamaño recomendado para una visualización correcta de la imagen es de 400x500 píxeles.
+                        </small>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@ViewBag.imagePath" alt="Sample Image" width="250px" />
+                    </div>
+                    <input type="hidden" value="@ViewBag.imagen" name="Imagen" />
+                </fieldset>
+
+
+
+
+
+                <fieldset class="form-check">
+                    @Html.CheckBoxFor(model => model.Destacada, new { })
+                    @Html.LabelFor(model => model.Destacada, new { @class = "control-label" })
+
+                    @Html.ValidationMessageFor(model => model.Destacada)
+                </fieldset>
+
+                <fieldset class="form-check">
+                    @Html.CheckBoxFor(model => model.Activa, new { @checked = "checked" })
+                    @Html.LabelFor(model => model.Activa, new { @class = "control-label" })
+
+                    @Html.ValidationMessageFor(model => model.Activa)
+                </fieldset>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success">
+                        <i class="material-icons btn__icon--left">add</i> Guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var fechaNueva = $("#Fecha").attr("value").split("-")[2] + "-" + $("#Fecha").attr("value").split("-")[1] + "-" + $("#Fecha").attr("value").split("-")[0]
+        $("#Fecha").val(fechaNueva)
+    </script>
+
+    <!--SUMMER NOTE-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#summernote').summernote();
+            $(".note-icon-picture,.note-icon-video").parent().hide();
+            $('#UploadForm').load("UploadFiles");
+        });
+    </script>
+}
+
+@section Styles {
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    @Styles.Render("~/Content/UploadCs")
+
+}
+
+
+
+
+
+
+
+
+
+

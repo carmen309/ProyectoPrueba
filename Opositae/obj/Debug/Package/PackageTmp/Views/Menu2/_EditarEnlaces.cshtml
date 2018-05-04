@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+
+@{
+    
+    Layout = null;
+}
+
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h5>Enlaces</h5>
+            <hr />
+            <p>
+                @Html.ActionLink("Nuevo Enlace", "Create")
+            </p>
+            <hr />
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.texto)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.accion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.controlador)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.claseCss)
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.texto)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.accion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.controlador)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.claseCss)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+                </td>
+            </tr>
+}
+
+            </table>
+
+        </div></div></div>
+

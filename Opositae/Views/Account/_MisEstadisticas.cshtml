@@ -1,0 +1,237 @@
+﻿@{
+
+    Layout = null;
+
+}
+
+<link href="~/Content/style.css" rel="stylesheet" />
+<link href="~/Content/Frontend/css/main.css" rel="stylesheet" />
+
+
+    <div class="row" style="width:80%; margin:0 auto; " >
+        <div class="card">
+            <div class="card-block">
+                <h5>TESTS</h5>
+                <hr>
+
+                <canvas id="densityChart" width="100" height="50"></canvas>
+                
+
+            </div>
+        </div>
+    </div>
+    <div class="row" style="width:80%; margin:0 auto; ">
+        <div class="card">
+            <div class="card-block">
+                <h5>CATEGORIAS</h5>
+                <hr>
+
+                <canvas id="densityChart2" width="100" height="50"></canvas>
+
+            </div>
+        </div>
+    </div>
+
+    <button class="btn BotonVolver" style="float: right; margin-right:10%" onclick="window.location.href = '@Url.Action("Opositor", "Account")'">Volver</button>
+
+
+
+            <script src="~/Scripts/Chart.js"></script>
+            <script>
+
+                var densityCanvas = document.getElementById("densityChart");
+
+                Chart.defaults.global.defaultFontFamily = "Lato";
+                Chart.defaults.global.defaultFontSize = 18;
+
+                var densityData = {
+                    label: 'PREGUNTAS CORRECTAS DE TESTS',
+                    data: [20, 15, 17, 10, 20, 11, 22, 2],
+                    backgroundColor: [
+                        'rgba(0, 99, 132, 0.6)',
+                        'rgba(30, 99, 132, 0.6)',
+                        'rgba(60, 99, 132, 0.6)',
+                        'rgba(90, 99, 132, 0.6)',
+                        'rgba(120, 99, 132, 0.6)',
+                        'rgba(150, 99, 132, 0.6)',
+                        'rgba(180, 99, 132, 0.6)',
+                        'rgba(210, 99, 132, 0.6)',
+                        'rgba(240, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(0, 99, 132, 1)',
+                        'rgba(30, 99, 132, 1)',
+                        'rgba(60, 99, 132, 1)',
+                        'rgba(90, 99, 132, 1)',
+                        'rgba(120, 99, 132, 1)',
+                        'rgba(150, 99, 132, 1)',
+                        'rgba(180, 99, 132, 1)',
+                        'rgba(210, 99, 132, 1)',
+                        'rgba(240, 99, 132, 1)'
+                    ],
+                    borderWidth: 2,
+                    hoverBorderWidth: 0
+                };
+
+                var chartOptions = {
+                    scales: {
+                        xAxes: [{ //Eje X  
+                            barPercentage: 0.5,
+                            ticks: {
+                                beginAtZero: true,
+                                max: 25,
+                                min: 0
+                               
+                            }    
+                        }]
+                  
+                    },
+                    elements: {
+                        rectangle: {
+                            borderSkipped: 'left',
+                        }
+                    }
+                };
+
+                var barChart = new Chart(densityCanvas, {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: ["Tema1", "Tema2", "Tema3", "Tema4", "Tema5", "Tema6", "Tema7", "Tema8"],
+                        datasets: [densityData],
+                        
+
+                    
+
+                    },
+                    
+                    options: chartOptions
+                   
+                });
+
+
+            </script>
+            <script>
+
+                TraerCategorias();
+                   
+
+                //QUE EL TEXTO NO SE DESFORME SI ES MUY LARGO
+                function formatLabel(str, maxwidth) {
+                    var sections = [];
+                    var words = str.split(" ");
+                    var temp = "";
+
+                    words.forEach(function (item, index) {
+                        if (temp.length > 0) {
+                            var concat = temp + ' ' + item;
+
+                            if (concat.length > maxwidth) {
+                                sections.push(temp);
+                                temp = "";
+                            }
+                            else {
+                                if (index == (words.length - 1)) {
+                                    sections.push(concat);
+                                    return;
+                                }
+                                else {
+                                    temp = concat;
+                                    return;
+                                }
+                            }
+                        }
+
+                        if (index == (words.length - 1)) {
+                            sections.push(item);
+                            return;
+                        }
+
+                        if (item.length < maxwidth) {
+                            temp = item;
+                        }
+                        else {
+                            sections.push(item);
+                        }
+
+                    });
+
+                    return sections;
+                }
+
+                function TraerCategorias() {
+
+                    var respuesta = new Array();
+
+                    
+
+                    $.ajax({
+                        method: "GET",
+                        url: "/Account/_SacarCatEstadis",
+                        dataType: 'json',
+                        success: function (json) {
+
+                            for (var i = 0; i < json.length; i++) {
+
+                                respuesta.push(formatLabel(json[i]['Nombre'], 30));
+
+                            }
+
+                            var densityCanvas = document.getElementById("densityChart2");
+
+                            Chart.defaults.global.defaultFontFamily = "Lato";
+                            this.defaultFontSize = 10;
+
+                            var densityData = {
+                                label: 'Preguntas acertadas según la categoria (%)',
+                                data: [10, 50, 20, 100, 99, 40, 35, 87, 90, 45, 23, 23, 3, 4, 76, 34, 87, 98, 56, 87, 10, 50, 20, 100, 99, 40, 35, 87, 90, 45,54,76,87],
+                                backgroundColor: "rgba(36, 44, 66,0.8)"
+
+                            };
+
+                            var chartOptions = {
+                                scales: {
+                                    yAxes: [{ //Eje y  
+                                        barPercentage: 0.5,
+                                        ticks: {
+                                            beginAtZero: true,
+                                            max: 100,
+                                            min: 0
+
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false,
+                                            fontSize: 10
+
+                                        }
+                                    }]
+
+                                }
+                            };
+
+                            var barChart = new Chart(densityCanvas, {
+                                type: 'bar', //Tipo de grafico
+                                data: {
+                                    labels: respuesta,
+                                    datasets: [densityData],
+                                    ticks: {
+                                        autoSkip: false,
+
+                                    }
+
+                                },
+
+                                options: chartOptions
+
+
+
+                            }); 
+                            
+                        }
+                    })
+
+                   
+                }
+
+            </script>

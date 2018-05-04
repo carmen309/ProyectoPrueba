@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.anteEnlace)
+        </th>
+   
+        
+        <th>
+            @Html.DisplayNameFor(model => model.claseCss)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.anteEnlace)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.claseCss)
+
+
+        </td>
+        
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.EnlaceId }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.EnlaceId }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.EnlaceId })
+        </td>
+    </tr>
+}
+
+</table>

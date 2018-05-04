@@ -1,0 +1,95 @@
+﻿@model Opositae.Models.Convocatoria
+@{
+    ViewBag.Title = "Ver";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Convocatorias")">Convocatorias</a></li>
+    <li class="breadcrumb-item active">Ver</li>
+</ol>
+<div class="row">
+    <div class="text-right margin-b-10">
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Convocatorias")'">
+            <i class="material-icons btn__icon--left">arrow_back</i> Volver
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <h5>Ver convocatoria</h5>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fecha.Date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Descripcion)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Entidad)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Entidad)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Acceso)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Acceso)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Plazas)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Plazas)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Grupo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Grupo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Enlace)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Enlace)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Activa)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Activa)
+                </dd>
+            </dl>
+            <div class="text-right">
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Editar", "Convocatorias", new { id = Model.Id })'">
+                    <i class="material-icons btn__icon--left">create</i> Editar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

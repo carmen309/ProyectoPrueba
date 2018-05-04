@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Opositae.Models.Blog>
+@{
+
+    Layout = null; //Para que no pille el general
+}
+
+@foreach (var item in Model)
+{
+
+<div class="media">
+
+    
+    <div class="media-left">
+        <a href="#" class="link EnlaceDestacadoImg ">
+        <input type="hidden" name="Oculto" value="@item.Id">
+        <img src="@item.Imagen" alt="" class="media-image  " />
+        </a>
+    </div>
+
+    <div class="media-right">
+        <div class="">@item.Fecha.Day / @item.Fecha.Month / @item.Fecha.Year</div>
+        <a href="#" class="link title EnlaceDestacadoTitulo" id="@item.Id">@item.Titulo</a>
+    </div>
+</div>
+
+
+}
+
+<script>
+
+    $('.EnlaceDestacadoTitulo').removeAttr('onclick').click(function () {
+
+        IdNoticia = this.id;
+
+            
+        $.ajax({
+
+            method: "POST",
+            url: "/Blog/SacarNoticia",
+            data: { id: IdNoticia },
+            success: function (data) {
+
+                $("h2.modal-title")[0].innerHTML = data["Titulo"];
+                $("img.imagenmodal")[0].src = data["Imagen"];
+                $("p.textomodal")[0].innerHTML = data["Texto"];
+                $("#myModal").modal('show');
+
+            }
+        })
+
+    }); 
+
+    $('.EnlaceDestacadoImg').removeAttr('onclick').click(function () {
+
+
+        IdNoticia = this.parentNode.childNodes[0].nextSibling.firstChild.nextSibling.defaultValue;
+
+        console.log(IdNoticia);
+
+        $.ajax({
+
+            method: "POST",
+            url: "/Blog/SacarNoticia",
+            data: { id: IdNoticia },
+            success: function (data) {
+
+                $("h2.modal-title")[0].innerHTML = data["Titulo"];
+                $("img.imagenmodal")[0].src = data["Imagen"];
+                $("p.textomodal")[0].innerHTML = data["Texto"];
+                $("#myModal").modal('show');
+
+            }
+        })
+
+    }); 
+
+    
+
+
+</script>

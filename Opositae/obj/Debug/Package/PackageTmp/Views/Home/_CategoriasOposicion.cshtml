@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Opositae.Models.CategoriaOposicion>
+@{
+    Layout = null;
+
+}
+@using (Html.BeginForm("Index", "Home/Legislacion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <select class="form-select selectbox" style="width:60%" name="cat">
+        <option value="all">Buscar por oposición</option>
+        @foreach (var item in Model)
+        {
+
+            <option value="@item.Nombre">@item.Nombre</option>
+
+        }
+
+    </select>
+    <button type="submit" class="form-submit btn btn-blue buscar-filtro-legislacion"><span>Buscar<i class="fa fa-search"></i></span></button>
+    <div class="clearfix"></div>
+
+}

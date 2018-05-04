@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Opositae.Models.EnlaceMejorado>
+@{
+
+    Layout = null; //Para que no pille el general
+}
+
+@foreach (var item in Model)
+{
+
+    <div class="container">
+        <div class="why-choose-us-wrapper">
+            <h2 class="title-2">@item.enlace.texto</h2>
+
+            <p>@item.enlace.anteEnlace</p>
+            <button  style="border:none; border-radius:0px;" onclick="window.location.href = '@Url.Action(item.enlace.accion, item.enlace.controlador)'" class="btn btn-green-2" ><span>@item.enlace.idEnviado</span></button>
+        </div>
+        <div data-wow-delay="0.2s" data-wow-duration="1.2s" class="background-girl-1 wow fadeInUp"><img src="@item.imagen.imagenPath()" alt="" class="img-responsive" /></div>
+    </div>
+}
+
+
+<!--<div class="container">
+    <div class="why-choose-us-wrapper">
+        <h2 class="title-2">¿POR QUÉ ELEGIR OPOSITAE?</h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nunc vulputate pulvinar tortor, non elementum magna vulputate quis.Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.Vivamus a sagittis erat.</p>
+        <button onclick="window.location.href = '@Url.Action("Nosotros", "Home")'" class="btn btn-green-2"><span>CONÓCENOS MEJOR</span></button>
+    </div>
+    <div data-wow-delay="0.2s" data-wow-duration="1.2s" class="background-girl-1 wow fadeInUp"><img src="../Content/Frontend/images/banner-2.jpg" alt="" class="img-responsive" /></div>
+</div>-->
+
+
+

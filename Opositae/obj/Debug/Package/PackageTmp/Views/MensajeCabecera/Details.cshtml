@@ -1,0 +1,83 @@
+﻿@model Opositae.Models.Enlace
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Enlace</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.texto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.texto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anteEnlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anteEnlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.accion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.controlador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.controlador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idEnviado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idEnviado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.claseCss)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.claseCss)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enlacePadre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enlacePadre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.situacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.situacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EnlaceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

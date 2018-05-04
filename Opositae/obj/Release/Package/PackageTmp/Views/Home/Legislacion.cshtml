@@ -1,0 +1,136 @@
+﻿@model PagedList.IPagedList<Opositae.Models.Legislacion>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Legislación";
+    Layout = "~/Views/Shared/_LayoutFE.cshtml";
+    Session["menuopt"] = "legislacion";
+}
+@Html.Partial("_ImagenCabecera")
+<div class="section">
+    <div class="search-input">
+        <div class="container">
+            <div class="search-input-wrapper" id="ListaCategorias">
+                <!-- <form>
+                     <select class="form-select selectbox" style="width:60%" >
+                         <option value="all">Buscar por oposición</option>
+                         <option value="">Administración Local</option>
+                         <option value="">Prisiones</option>
+                         <option value="">Hacienda</option>
+                         <option value="">Justicia</option>
+                         <option value="">Policía y Guardia Civil</option>
+                         <option value="">Bomberos</option>
+                         <option value="">Sanidad</option>
+                         <option value="">Educación Primaria</option>
+                         <option value="">Educación Secudnaria</option>
+                         <option value="">Forestales</option>
+                         <option value="">Ejercito</option>
+                         <option value="">Otras</option>
+                     </select>
+                     <button type="submit" class="form-submit btn btn-blue buscar-filtro-legislacion"><span>Buscar<i class="fa fa-search"></i></span></button>
+                     <div class="clearfix"></div>
+                 </form>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section teacher-course section-padding">
+    <div class="container teacher-course-wrapper">
+        <div class="course-table">
+            <div class="outer-container">
+                <div class="certificate-title underline">Auxiliar administrativo de la Junta de Andalucía</div>
+                <div class="inner-container">
+                    <div class="table-header">
+                        <table class="edu-table-responsive">
+                            <thead>
+                                <tr class="heading-table">
+                                    <th class="col-1">Norma</th>
+                                    <th class="col-4">Enlace</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="table-body">
+                        <table class="edu-table-responsive table-hover legisla">
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="table-row">
+                                        <td class="col-1"><span><i class="fa fa-file-text-o"></i> &nbsp;&nbsp;&nbsp;@item.Norma</span></td>
+                                        <td class="col-4"><span><a href="@item.Enlace" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                    </tr>
+
+                                }
+                                <!--<tr class="table-row">
+                                    <td class="col-1"><span><i class="fa fa-file-text-o"></i> &nbsp;&nbsp;&nbsp;Real Decreto 2/2014, del 23 de Junio por el que se regula el Horario Permitido para hacer Cosas Importantes.</span></td>
+                                    <td class="col-4"><span><a href="http://www.juntadeandalucia.es/boja/2017/134/1" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span><i class="fa fa-file-text-o"></i> &nbsp;&nbsp;&nbsp;Ley Orgánica 7/2010, del 12 de Agosto por el que se regula el Horario Permitido para hacer Cosas.</span></td>
+                                    <td class="col-4"><span><a href="http://www.juntadeandalucia.es/boja/2017/134/1" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span><i class="fa fa-file-text-o"></i> &nbsp;&nbsp;&nbsp;Decreto Legislativo 6/1995, del 2 de Enero por el que se regula el Horario Permitido para hacer Cosas Importantes.</span></td>
+                                    <td class="col-4"><span><a href="http://www.juntadeandalucia.es/boja/2017/134/1" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span><i class="fa fa-file-text-o"></i> &nbsp;&nbsp;&nbsp;Resolución 5/2017, del 4 de Junio por el que se regula el Horario No Permitido para hacer Cosas.</span></td>
+                                    <td class="col-4"><span><a href="http://www.juntadeandalucia.es/boja/2017/134/1" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span><i class="fa fa-file-text-o"></i> &nbsp;&nbsp;&nbsp;Decreto Ley 12/2015, del 15 de Mayo por el que se regula el Horario Permitido para hacer Cosas Importantes.</span></td>
+                                    <td class="col-4"><span><a href="http://www.juntadeandalucia.es/boja/2017/134/1" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="col-1"><span><i class="fa fa-file-text-o"></i> &nbsp;&nbsp;&nbsp;Real Decreto 303/2009, del 30 de Diciembre por el que se regula el Horario No Permitido para hacer Cosas Importantes.</span></td>
+                                    <td class="col-4"><span><a href="http://www.juntadeandalucia.es/boja/2017/134/1" target="_blank"><i class="fa fa-external-link"></i></a></span></td>
+                                </tr>-->
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <nav class="pagination col-md-12">
+
+                            <nav class="text-xs-center">
+                                <span class="paginationTxt">Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount </span>
+                                @Html.PagedListPager(Model, page => Url.Action("Index", "Home/Legislacion", new { page }))
+                            </nav>
+
+                            <!--<ul class="pagination__list">
+                                <li><a rel="prev" href="#" class="pagination__previous btn-squae disable">&#8249;</a></li>
+                                <li><span class="pagination__page btn-squae active">1</span></li>
+                                <li><a href="#" class="pagination__page btn-squae">2</a></li>
+                                <li><a href="#" class="pagination__page btn-squae">...</a></li>
+                                <li><a href="#" class="pagination__page btn-squae">14</a></li>
+                                <li><a rel="next" href="#" class="pagination__next btn-squae">&#8250;</a></li>
+                            </ul>-->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+<script>
+
+        //DAR CLASES A LA PAGINACION
+        $(document).ready(function () {
+
+            $(".paginationTxt").hide();
+        $(".pagination-container").children('ul').first().removeClass("pagination").addClass("pagination__list");
+
+        $('ul.pagination__list').children('li').each(function () {
+            $(this).addClass("pagination__page btn-squae");
+            });
+
+            $("#loader").hide()
+
+        });
+
+    </script>
+
+}
+

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+@{
+
+    Layout = null; //Para que no pille el general
+}
+
+    <div data-wow-delay="0.4s" data-wow-duration="1s" class="row why-choose-us-wrapper wow zoomIn">
+        <div class="customs-row">
+
+            @foreach (var item in Model)
+            {
+
+                <div class="col-sm-4 col-xs-6 section-icon">
+                    <i class="fa @item.claseCss"></i>
+
+                    <p> @item.anteEnlace </p>
+                </div>
+
+
+            }
+        </div>
+    </div>
+
+
+
+    <!--<div data-wow-delay="0.4s" data-wow-duration="1s" class="row why-choose-us-wrapper wow zoomIn">
+        <div class="customs-row">
+            <div class="col-sm-4 col-xs-6 section-icon">
+                <i class="fa fa-pencil-square-o"></i>
+
+                <p> Más de 500.000 preguntas de test</p>
+            </div>
+            <div class="col-sm-4 col-xs-6 section-icon">
+                <i class="fa fa-compress"></i>
+
+                <p> Técnicas de aprendizaje especiales</p>
+            </div>
+
+
+        </div>
+        <div class="customs-row">
+            <div class="col-sm-4 col-xs-6 section-icon">
+                <i class="fa fa-paper-plane"></i>
+
+                <p> Fácil de aprender en cualquier lugar</p>
+            </div>
+            <div class="col-sm-4 col-xs-6 section-icon">
+                <i class="fa fa-folder-open"></i>
+
+                <p> Más de 1.000 recursos para aprender</p>
+            </div>
+        </div>
+        <div class="customs-row">
+            <div class="col-sm-4 col-xs-6 section-icon">
+                <i class="fa fa-user"></i>
+
+                <p> Tú marcas el ritmo de aprendizaje</p>
+            </div>
+            <div class="col-sm-4 col-xs-6 section-icon">
+                <i class="fa fa-stumbleupon-circle"></i>
+
+                <p> Información actualizada</p>
+            </div>
+        </div>
+    </div>-->

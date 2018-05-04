@@ -1,0 +1,56 @@
+﻿@model Opositae.Models.ItemEslider
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar ItemEslider</h2>
+
+<h3>¿Estas seguro de que deseas eliminarlo?</h3>
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subtitulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subtitulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.texto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.texto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imagenSlider)
+        </dt>
+
+        <dd>
+            <img src=@ViewBag.imagenes.imagenPath() alt="Sample Image" width=" 100" />
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

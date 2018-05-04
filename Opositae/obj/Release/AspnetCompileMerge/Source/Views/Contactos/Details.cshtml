@@ -1,0 +1,67 @@
+﻿@model Opositae.Models.Contacto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contacto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mapa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mapa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RS_Facebook)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RS_Facebook)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RS_Twitter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RS_Twitter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RS_GooglePlus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RS_GooglePlus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

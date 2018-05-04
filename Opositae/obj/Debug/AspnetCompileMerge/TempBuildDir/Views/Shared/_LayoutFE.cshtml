@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Opositae - @ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- LIBRARY FONT-->
+    
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900" rel="stylesheet">
+    @Styles.Render("~/Content/css_font_Frontend")
+    @Styles.Render("~/Content/css_Frontend")
+    @{
+        if (Session["menuopt"] == null)
+        {
+            Session["menuopt"] = "0";
+        }
+        string activaFront = "active";
+    }
+    @Scripts.Render("~/Content/js_superior_Frontend")
+</head>
+<body>
+    <!-- HEADER-->
+    <div id="loader">
+        <div class="loader"></div>
+    </div>
+    
+    <header>
+        <div class="header-topbar">
+            <div class="container" id="Menu1">
+
+
+            </div>
+        </div>
+        <div class="header-main homepage-01">
+            <div class="container" id="Menu2">
+
+            </div>
+        </div>
+    </header>
+    <!-- WRAPPER-->
+    <div id="wrapper-content">
+        <!-- PAGE WRAPPER-->
+        <div id="page-wrapper">
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <!-- CONTENT-->
+                <div class="content">
+
+
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+        <!-- BUTTON BACK TO TOP-->
+        <div id="back-top"><a href="#top"><i class="fa fa-angle-double-up"></i></a></div>
+    </div>
+
+    <!-- FOOTER-->
+    <footer>
+        <div class="footer-top">
+            <div class="container" id="EnlaceAcceso">
+
+
+
+            </div>
+        </div>
+        <div class="footer-main">
+            <div class="container" id="PiePagina">
+                
+                
+            </div>
+        </div>
+    </footer>
+
+   
+    @Scripts.Render("~/Content/js_Frontend")
+    @Scripts.Render("~/Scripts/misScripts") <!-- CARGAR VENTANAS -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>

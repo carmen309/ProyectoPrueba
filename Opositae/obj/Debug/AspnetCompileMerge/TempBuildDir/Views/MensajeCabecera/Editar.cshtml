@@ -1,0 +1,66 @@
+﻿@model Opositae.Models.Enlace
+
+@{
+    /**/
+
+    ViewBag.Title = "Cuadro Cabecera";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Inicio</li>
+    <li class="breadcrumb-item active">Mensaje Cabecera</li>
+</ol>
+
+
+@using (Html.BeginForm("Edit", "MensajeCabecera", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    <div class="row">
+        <div class="card">
+            <div class="card-block">
+                <h5>Cuadro Cabecera</h5>
+                <hr />
+
+                <input type="hidden" name="EnlaceId" value="@Model.EnlaceId" />
+
+                <fieldset class="form-group col-md-3">
+                    <label class="control-label">Titulo</label>
+                    <input type="text" name="texto" value="@Model.texto" class="form-control col-md-4">
+                    @Html.ValidationMessage(@Model.texto)
+                </fieldset>
+
+                <fieldset class="form-group col-md-3">
+                    <label class="control-label">Acción</label>
+                    <input type="text" name="accion" value="@Model.accion" class="form-control col-md-4">
+                    @Html.ValidationMessage(@Model.accion)
+                </fieldset>
+
+                <fieldset class="form-group col-md-3">
+                    <label class="control-label">Controlador</label>
+                    <input type="text" name="controlador" value="@Model.controlador" class="form-control col-md-4">
+                    @Html.ValidationMessage(Model.controlador)
+                </fieldset>
+
+                <fieldset class="form-group col-md-3">
+                    <label class="control-label">Texto Botón</label>
+                    <input type="text" name="idEnviado" value="@Model.idEnviado" class="form-control col-md-4">
+                    @Html.ValidationMessage(Model.idEnviado)
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="text-right">
+        <button type="submit" class="btn btn-success">
+            <i class="material-icons btn__icon--left">create</i> Guardar
+        </button>
+    </div>
+
+}

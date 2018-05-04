@@ -1,0 +1,266 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Nuevo Recurso", "Create")
+</p>
+<hr />
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h5>Programas Para Descargar</h5>
+            <hr />
+
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+
+                    <th>
+                        Dirección Del Archivo
+                    </th>
+
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.idEnviado == "ProgramasParaDescargar")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.texto)
+                            </td>
+
+                            <td>
+                                <a href=" @Html.DisplayFor(modelItem => item.accion)" Target="_blank">@Html.DisplayFor(modelItem => item.accion)</a>
+
+                            </td>
+
+
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h5>Técnicas De Estudio</h5>
+            <hr />
+
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+
+                    <th>
+                        Dirección Del Archivo
+                    </th>
+
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.idEnviado == "TecnicasDeEstudio")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.texto)
+                            </td>
+
+                            <td>
+                                <a href=" @Html.DisplayFor(modelItem => item.accion)" Target="_blank">@Html.DisplayFor(modelItem => item.accion)</a>
+
+                            </td>
+
+
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h5>Plantillas De Examen</h5>
+            <hr />
+
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+
+                    <th>
+                        Dirección Del Archivo
+                    </th>
+
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.idEnviado == "PlantillasDeExamen")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.texto)
+                            </td>
+
+                            <td>
+                                <a href=" @Html.DisplayFor(modelItem => item.accion)" Target="_blank">@Html.DisplayFor(modelItem => item.accion)</a>
+
+                            </td>
+
+
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h5>Examenes De Otras Convocatorias</h5>
+            <hr />
+
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+
+                    <th>
+                        Dirección Del Archivo
+                    </th>
+
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.idEnviado == "ExamenesDeOtrasConvocatorias")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.texto)
+                            </td>
+
+                            <td>
+                                <a href=" @Html.DisplayFor(modelItem => item.accion)" Target="_blank">@Html.DisplayFor(modelItem => item.accion)</a>
+
+                            </td>
+
+
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h5>Otros Recursos</h5>
+            <hr />
+
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+
+                    <th>
+                        Dirección Del Archivo
+                    </th>
+
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.idEnviado == "OtrosRecursos")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.texto)
+                            </td>
+
+                            <td>
+                                <a href=" @Html.DisplayFor(modelItem => item.accion)" Target="_blank">@Html.DisplayFor(modelItem => item.accion)</a>
+
+                            </td>
+
+
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+

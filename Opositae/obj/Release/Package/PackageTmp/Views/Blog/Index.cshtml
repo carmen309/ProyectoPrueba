@@ -1,0 +1,112 @@
+﻿@model PagedList.IPagedList<Opositae.Models.Blog>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Session["mopt"] = "blog";
+
+
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+    <li class="breadcrumb-item active">Blog</li>
+</ol>
+<div class="row">
+    <span class="pull-left">Filtrar &nbsp; </span>
+    <div class="btn-group pull-left">
+        <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categoría</button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="@Url.Action("Index", "Blog", new { cat = 0 })">Sin filtrar</a>
+            <div class="dropdown-divider"></div>
+            @foreach (var cat in ViewBag.FiltroCategoria)
+            {
+                <a class="dropdown-item" href="@Url.Action("Index", "Blog", new { cat = cat.Id })">@cat.Nombre</a>
+            }
+        </div>
+    </div>
+    <p class="text-right pull-right">
+        <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Crear", "Blog")'">
+            <i class="material-icons btn__icon--left">add</i> Crear
+        </button>
+    </p>
+    <div class="clearfix"></div>
+    @{
+        if (ViewBag.Error != "" && ViewBag.Error != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>¡Error!</strong> @ViewBag.Error
+            </div>
+        }
+
+    }
+    <div class="card">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Fecha
+                    </th>
+                    <th>
+                        Título
+                    </th>
+                    <th>
+                        Categoría
+                    </th>
+                    <th class="hidden-md-down">
+                        Destacada
+                    </th>
+                    <th class="hidden-md-down">
+                        Activa
+                    </th>
+                    <th class="lastcol">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var f = item.Fecha;
+                    <tr>
+                        <td class="text-center">
+                            @f
+                        </td>
+                        <td class="text-justify">
+                            @Html.DisplayFor(modelItem => item.Titulo);
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.CategoriaBlog.Nombre)
+                        </td>
+                        <td class="hidden-md-down text-center">
+                            @Html.DisplayFor(modelItem => item.Destacada)
+                        </td>
+                        <td class="hidden-md-down text-center">
+                            @Html.DisplayFor(modelItem => item.Activa)
+                        </td>
+                        <td class="lastcol">
+                            <button type="button" class="btn btn-primary btn-only-icon" onclick="location.href='@Url.Action("Editar", "Blog", new { id = item.Id })'">
+                                <i class="material-icons btn__icon--left">create</i>
+                            </button>
+                            <button type="button" class="btn btn-info btn-only-icon" onclick="location.href='@Url.Action("Ver", "Blog", new { id = item.Id })'">
+                                <i class="material-icons btn__icon--left">visibility</i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-only-icon" onclick="location.href='@Url.Action("Borrar", "Blog", new { id = item.Id })'">
+                                <i class="material-icons btn__icon--left">delete</i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <nav class="text-xs-center">
+            <span class="paginationTxt">Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount </span>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, cat = ViewBag.CategoriaActual }))
+        </nav>
+
+
+    </div>
+
+
+</div>

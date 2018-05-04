@@ -1,0 +1,53 @@
+﻿@model Opositae.Models.EnlaceMejorado
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Cuadro Publicitario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enlace.texto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enlace.texto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enlace.anteEnlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enlace.anteEnlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enlace.idEnviado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enlace.idEnviado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imagen)
+        </dt>
+
+        <dd>
+            <img src=@ViewBag.imagenes.imagenPath() alt="Sample Image" width=" 100" />
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.EnlaceMejoradoId }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

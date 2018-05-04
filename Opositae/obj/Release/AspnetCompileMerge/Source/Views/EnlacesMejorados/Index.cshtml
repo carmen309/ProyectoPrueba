@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Opositae.Models.EnlaceMejorado>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+   <!-- Html.ActionLink("Crear nuevo", "Create" , "EnlacesMejorados")-->
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.enlace.texto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enlace.anteEnlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enlace.idEnviado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagen)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.enlace.texto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enlace.anteEnlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enlace.idEnviado)
+            </td>
+            <td>
+                @if (item.imagen != null)
+                {
+                    <img src=@item.imagen.imagenPath() alt="image" width=" 100" />
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceMejoradoId }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.EnlaceMejoradoId }) 
+                <!--Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceMejoradoId })-->
+            </td>
+        </tr>
+    }
+
+</table>

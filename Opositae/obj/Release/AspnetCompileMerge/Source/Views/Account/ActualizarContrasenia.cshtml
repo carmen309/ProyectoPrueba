@@ -1,0 +1,68 @@
+﻿@model IdentitySample.Models.ResetPasswordViewModel
+@{
+    ViewBag.Title = "Restaurar Contraseña";
+    Layout = Layout = "~/Views/Shared/MiLogin.cshtml";
+}
+
+
+<div class="row login">
+    <div class="col-md-6 push-md-3">
+        <div class="text-xs-center m-2">
+            <div class="icon-block rounded-circle">
+                <img src="~/Images/login-icon-backend.png" />
+                <!--i class="material-icons md-36 text-muted">lock</!--i>-->
+            </div>
+        </div>
+        <div class="card bg-transparent">
+            <div class="card-header bg-white text-xs-center">
+                <h4 class="card-title">Reuperación De La Contraseña</h4>
+                <p class="card-subtitle">Accede a tu cuenta</p>
+            </div>
+            <div class="p-2">
+
+                @using (Html.BeginForm("ResetPassword", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+            @Html.AntiForgeryToken()
+            <h4>Introduce tu nueva contraseña.</h4>
+            <hr />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Code)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-block-text btn-primary btn-block" value="Actualizar Contraseña" />
+                </div>
+            </div>
+}
+
+
+            </div>
+            <div class="card-footer text-xs-center bg-white">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

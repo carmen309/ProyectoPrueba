@@ -1,0 +1,368 @@
+﻿@model PagedList.IPagedList<Opositae.Models.Blog>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_LayoutFE.cshtml";
+    Session["menuopt"] = "blog";
+}
+
+@Html.Partial("_ImagenCabecera")
+
+<div id="MensajeCabecera">
+
+
+</div>
+
+<div class="section section-padding news-page">
+    <div class="container">
+
+
+
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row news-page-wrapper">
+
+                    @foreach (var item in Model)
+                {
+
+                    <div class="col-sm-6">
+                        <div class="edugate-layout-3 news-gird">
+                            <div class="edugate-layout-3-wrapper">
+                                <a href="#" class="edugate-image  Imagen" ><img src="@item.Imagen" alt="" class="img-responsive" style="height:205px;width:348px;" /></a>
+
+                                <div class="edugate-content">
+                                    <a style="cursor:default" class="title">@item.Titulo</a>
+
+                                    <div class="info">
+                                        <div class="date-time item">@item.Fecha.Day/@item.Fecha.Month/@item.Fecha.Year</div>
+                                    </div>
+                                <div class="description">@Html.Raw(item.Contenido)</div>
+                                <button class="btn btn-green LeerMas" data-toggle="modal" data-target="#myModal" ><span>leer más</span></button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        }
+                    <!--
+                <div class="col-sm-6">
+                    <div class="edugate-layout-3 news-gird">
+                        <div class="edugate-layout-3-wrapper">
+                            <a href="#" class="edugate-image"><img src="../Content/Frontend/images/news/noticia1.jpg" alt="" class="img-responsive" /></a>
+
+                            <div class="edugate-content">
+                                <a href="news-detail.html" class="title">Lorem ipsum dolor sit amet. Valet veritas in dolence cae</a>
+
+                                <div class="info">
+                                    <div class="date-time item"><a href="#">17 sep 2017</a></div>
+                                </div>
+                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at vestibulum elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum posuere urna mauris, ut dignissim dui convallis id. Etiam tristique diam purus, quis consectetur nisl malesuada in. Nam non laoreet justo, vitae lobortis est. Suspendisse potenti. In ultricies nibh at felis pharetra, eget aliquet enim pharetra. Integer cursus ligula id tortor ultricies, auctor tempus elit ornare. Aliquam eget fermentum est. Curabitur id dolor quis massa porttitor ultricies sit amet et enim. Duis at lobortis ipsum, quis interdum metus. Sed a odio dignissim, porta purus vitae, aliquam lacus. Vestibulum felis ex, pharetra et tristique nec, vehicula et dolor. Nam tempus non enim vel porta. Phasellus diam arcu, malesuada vel rutrum eget, pretium sit amet nisl.</div>
+                                <button class="btn btn-green"><span>leer más</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="edugate-layout-3 news-gird">
+                        <div class="edugate-layout-3-wrapper">
+                            <a href="#" class="edugate-image"><img src="../Content/Frontend/images/news/noticia2.jpg" alt="" class="img-responsive" /></a>
+
+                            <div class="edugate-content">
+                                <a href="news-detail.html" class="title">Lorem ipsum dolor sit amet. Valet veritas in dolence cae</a>
+
+                                <div class="info">
+                                    <div class="date-time item"><a href="#">17 sep 2015</a></div>
+                                </div>
+                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at vestibulum elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum posuere urna mauris, ut dignissim dui convallis id. Etiam tristique diam purus, quis consectetur nisl malesuada in. Nam non laoreet justo, vitae lobortis est. Suspendisse potenti. In ultricies nibh at felis pharetra, eget aliquet enim pharetra. Integer cursus ligula id tortor ultricies, auctor tempus elit ornare. Aliquam eget fermentum est. Curabitur id dolor quis massa porttitor ultricies sit amet et enim. Duis at lobortis ipsum, quis interdum metus. Sed a odio dignissim, porta purus vitae, aliquam lacus. Vestibulum felis ex, pharetra et tristique nec, vehicula et dolor. Nam tempus non enim vel porta. Phasellus diam arcu, malesuada vel rutrum eget, pretium sit amet nisl.</div>
+                                <button class="btn btn-green"><span>leer más</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="edugate-layout-3 news-gird">
+                        <div class="edugate-layout-3-wrapper">
+                            <a href="#" class="edugate-image"><img src="../Content/Frontend/images/news/noticia3.jpg" alt="" class="img-responsive" /></a>
+
+                            <div class="edugate-content">
+                                <a href="news-detail.html" class="title">E-Learn 2015 - World Conference on Edugate Website</a>
+
+                                <div class="info">
+                                    <div class="date-time item"><a href="#">17 sep 2015</a></div>
+                                </div>
+                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at vestibulum elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum posuere urna mauris, ut dignissim dui convallis id. Etiam tristique diam purus, quis consectetur nisl malesuada in. Nam non laoreet justo, vitae lobortis est. Suspendisse potenti. In ultricies nibh at felis pharetra, eget aliquet enim pharetra. Integer cursus ligula id tortor ultricies, auctor tempus elit ornare. Aliquam eget fermentum est. Curabitur id dolor quis massa porttitor ultricies sit amet et enim. Duis at lobortis ipsum, quis interdum metus. Sed a odio dignissim, porta purus vitae, aliquam lacus. Vestibulum felis ex, pharetra et tristique nec, vehicula et dolor. Nam tempus non enim vel porta. Phasellus diam arcu, malesuada vel rutrum eget, pretium sit amet nisl.</div>
+                                <button class="btn btn-green"><span>leer más</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="edugate-layout-3 news-gird">
+                        <div class="edugate-layout-3-wrapper">
+                            <a href="#" class="edugate-image"><img src="../Content/Frontend/images/news/noticia4.jpg" alt="" class="img-responsive" /></a>
+
+                            <div class="edugate-content">
+                                <a href="news-detail.html" class="title">Lorem ipsum dolor sit amet. Valet veritas in dolence cae</a>
+
+                                <div class="info">
+                                    <div class="date-time item"><a href="#">17 sep 2015</a></div>
+                                </div>
+                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at vestibulum elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum posuere urna mauris, ut dignissim dui convallis id. Etiam tristique diam purus, quis consectetur nisl malesuada in. Nam non laoreet justo, vitae lobortis est. Suspendisse potenti. In ultricies nibh at felis pharetra, eget aliquet enim pharetra. Integer cursus ligula id tortor ultricies, auctor tempus elit ornare. Aliquam eget fermentum est. Curabitur id dolor quis massa porttitor ultricies sit amet et enim. Duis at lobortis ipsum, quis interdum metus. Sed a odio dignissim, porta purus vitae, aliquam lacus. Vestibulum felis ex, pharetra et tristique nec, vehicula et dolor. Nam tempus non enim vel porta. Phasellus diam arcu, malesuada vel rutrum eget, pretium sit amet nisl.</div>
+                                <button class="btn btn-green"><span>leer más</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="edugate-layout-3 news-gird">
+                        <div class="edugate-layout-3-wrapper">
+                            <a href="#" class="edugate-image"><img src="../Content/Frontend/images/news/noticia7.jpg" alt="" class="img-responsive" /></a>
+
+                            <div class="edugate-content">
+                                <a href="news-detail.html" class="title">Lorem ipsum dolor sit amet. Valet veritas in dolence cae</a>
+
+                                <div class="info">
+                                    <div class="date-time item"><a href="#">17 sep 2015</a></div>
+                                </div>
+                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at vestibulum elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum posuere urna mauris, ut dignissim dui convallis id. Etiam tristique diam purus, quis consectetur nisl malesuada in. Nam non laoreet justo, vitae lobortis est. Suspendisse potenti. In ultricies nibh at felis pharetra, eget aliquet enim pharetra. Integer cursus ligula id tortor ultricies, auctor tempus elit ornare. Aliquam eget fermentum est. Curabitur id dolor quis massa porttitor ultricies sit amet et enim. Duis at lobortis ipsum, quis interdum metus. Sed a odio dignissim, porta purus vitae, aliquam lacus. Vestibulum felis ex, pharetra et tristique nec, vehicula et dolor. Nam tempus non enim vel porta. Phasellus diam arcu, malesuada vel rutrum eget, pretium sit amet nisl.</div>
+                                <button class="btn btn-green"><span>leer más</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="edugate-layout-3 news-gird">
+                        <div class="edugate-layout-3-wrapper">
+                            <a href="#" class="edugate-image"><img src="../Content/Frontend/images/news/noticia6.jpg" alt="" class="img-responsive" /></a>
+
+                            <div class="edugate-content">
+                                <a href="news-detail.html" class="title">
+                                    Lorem ipsum dolor sit amet. Valet veritas in dolence cae<a>
+
+                                        <div class="info">
+                                            <div class="date-time item"><a href="#">17 sep 2015</a></div>
+                                        </div>
+                                        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at vestibulum elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum posuere urna mauris, ut dignissim dui convallis id. Etiam tristique diam purus, quis consectetur nisl malesuada in. Nam non laoreet justo, vitae lobortis est. Suspendisse potenti. In ultricies nibh at felis pharetra, eget aliquet enim pharetra. Integer cursus ligula id tortor ultricies, auctor tempus elit ornare. Aliquam eget fermentum est. Curabitur id dolor quis massa porttitor ultricies sit amet et enim. Duis at lobortis ipsum, quis interdum metus. Sed a odio dignissim, porta purus vitae, aliquam lacus. Vestibulum felis ex, pharetra et tristique nec, vehicula et dolor. Nam tempus non enim vel porta. Phasellus diam arcu, malesuada vel rutrum eget, pretium sit amet nisl.</div>
+                                        <button class="btn btn-green"><span>leer más</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+
+                </div>
+                <div class="row">
+                    <nav class="pagination col-md-12">
+
+                        <nav class="text-xs-center">
+                            <span class="paginationTxt">Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount </span>
+                            @Html.PagedListPager(Model, page => Url.Action("Index", "Home/Blog", new { page }))
+                        </nav>
+
+                        <!-- <ul class="pagination__list">
+                         <li><a rel="prev" href="#" class="pagination__previous btn-squae disable">&#8249;</a></li>
+                         <li><span class="pagination__page btn-squae active">1</span></li>
+                         <li><a href="#" class="pagination__page btn-squae">2</a></li>
+                         <li><a href="#" class="pagination__page btn-squae">...</a></li>
+                         <li><a href="#" class="pagination__page btn-squae">14</a></li>
+                         <li><a rel="next" href="#" class="pagination__next btn-squae">&#8250;</a></li>
+                     </ul>-->
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-3 sidebar layout-right">
+                <div class="row">
+                    <!--BLOGD DESTACADOS-->
+                    <div class="popular-course-widget widget col-sm-6 col-md-12 col-xs-6 sd380">
+                        <div class="title-widget">Entradas destacadas</div>
+                        <div class="content-widget" id="BlogsDestacados">
+
+                            <!-- <div class="media">
+                             <div class="media-left"><a href="#" class="link"><img src="../Content/Frontend/images/news/noticia6.jpg" alt="" class="media-image" /></a></div>
+                             <div class="media-right">
+                                 <div class="">4/11/2017</div>
+                                 <a href="#" class="link title">Lorem Ipsum Dolor Sit Amet. Valet Veritas In Dolence Cae</a>
+                             </div>
+                         </div>
+                         <div class="media">
+                             <div class="media-left"><a href="#" class="link"><img src="../Content/Frontend/images/news/noticia5.jpg" alt="" class="media-image" /></a></div>
+                             <div class="media-right">
+                                 <div class="">4/11/2017</div>
+                                 <a href="#" class="link title">Lorem Ipsum Dolor Sit Amet. Valet Veritas In Dolence Cae</a>
+                             </div>
+                         </div>
+                         <div class="media">
+                             <div class="media-left"><a href="#" class="link"><img src="../Content/Frontend/images/news/noticia7.jpg" alt="" class="media-image" /></a></div>
+                             <div class="media-right">
+                                 <div class="">4/11/2017</div>
+                                 <a href="#" class="link title">Lorem Ipsum Dolor Sit Amet. Valet Veritas In Dolence Cae</a>
+                             </div>
+                             <div class="media">
+                                 <div class="media-left"><a href="#" class="link"><img src="../Content/Frontend/images/news/noticia3.jpg" alt="" class="media-image" /></a></div>
+                                 <div class="media-right">
+                                     <div class="">4/11/2017</div>
+                                     <a href="#" class="link title">Lorem Ipsum Dolor Sit Amet. Valet Veritas In Dolence Cae</a>
+                                 </div>
+                             </div>
+                         </div>-->
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="tag-widget widget col-sm-6 col-md-12 col-xs-6 sd380">
+
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="archive-widget widget col-sm-6 col-md-12 col-xs-6 sd380">
+                            <div class="title-widget">Archivo</div>
+                            <div class="content-widget">
+
+                                @using (Html.BeginForm("Index", "Home/Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <select class="form-select selectbox" style="width:60%" name="anio">
+                                    <option value="all">Año</option>
+                                    @for (var i = ViewBag.Antiguo; i <= ViewBag.Nuevo; i++)
+                                {
+
+                                    <option value="@i">@i</option>
+
+                            }
+                                </select>
+
+                                <select class="form-select selectbox" style="width:60%" name="mes">
+                                    <option value="all">Mes</option>
+                                    <option value="1">Enero</option>
+                                    <option value="2">Febrero</option>
+                                    <option value="3">Marzo</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Mayo</option>
+                                    <option value="6">Junio</option>
+                                    <option value="7">Julio</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Septiembre</option>
+                                    <option value="10">Octubre</option>
+                                    <option value="11">Noviembre</option>
+                                    <option value="12">Diciembre</option>
+                                </select>
+
+
+
+                                <button type="submit" class="form-submit btn btn btn-green" style="width:100%"><span>Buscar<i class="fa fa-search"></i></span></button>
+                                <div class="clearfix"></div>
+
+                        }
+
+                                <!--  <ul class="archive-widget list-unstyled">
+                                <li><a href="#" class="link archive-item"><span class="pull-left">Noviembre 2017</span><span class="pull-right">09</span></a></li>
+                                <li><a href="#" class="link archive-item"><span class="pull-left">Octubre 2017</span><span class="pull-right">14</span></a></li>
+                                <li><a href="#" class="link archive-item"><span class="pull-left">Septiembre 2017</span><span class="pull-right">15</span></a></li>
+                                <li><a href="#" class="link archive-item"><span class="pull-left">Agosto 2017</span><span class="pull-right">23</span></a></li>
+                                <li><a href="#" class="link archive-item"><span class="pull-left">Julio 2017</span><span class="pull-right">34</span></a></li>
+                                <li><a href="#" class="link archive-item"><span class="pull-left">Junio 2017</span><span class="pull-right">09</span></a></li>
+                                <li><a href="#" class="link archive-item"><span class="pull-left">Mayo 2017</span><span class="pull-right">14</span></a></li>
+                                <li><a href="#" class="link archive-item"><span class="pull-left">Abril 2017</span><span class="pull-right">15</span></a></li>
+                                <li><a href="#" class="link archive-item"><span class="pull-left">Marzo 2017</span><span class="pull-right">23</span></a></li>
+                            </ul>-->
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--VENTANA MODAL-->
+        <div class="container" >
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content ModalBlog" >
+                        <div class="modal-header">
+                           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                            <!--<h4 class="modal-title">TITULO NOTICIA</h4>-->
+                        </div>
+                        <div class="modal-body">
+
+                           
+                                <img src="" alt="" class="img-responsive imagenmodal img-thumbnail" />
+                                <h2 class="modal-title">TITULO NOTICIA</h2>
+                                <hr />
+                                <p class="textomodal"></p>
+                         
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" style="color:Black">Cerrar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    @section Scripts {
+        <script>
+
+            //DAR CLASES A LA PAGINACION
+            $(document).ready(function () {
+
+                $("#BlogsDestacados").load("/Home/_BlogsDestacados");
+
+                $(".paginationTxt").hide();
+                $(".pagination-container").children('ul').first().removeClass("pagination").addClass("pagination__list");
+
+
+                $('ul.pagination__list').children('li').each(function () {
+
+                    $(this).addClass("pagination__page btn-squae");
+
+
+                });
+                $("#loader").hide()
+
+            });
+
+            //VENTANA MODAL DE LAS NOTICIAS PRINCIPALES
+
+            $(".LeerMas").on("click", function () {
+
+                var Imagen = $(this).parent().parent().children()[0].childNodes[0].src;
+                var Titulo = $(this).parent().parent().children()[1].children[0].innerHTML;
+                var Texto = $(this).parent().parent().children()[1].children[2].innerHTML;
+
+                $("h2.modal-title")[0].innerHTML = Titulo;
+                $("img.imagenmodal")[0].src = Imagen;
+                $("p.textomodal")[0].innerHTML = Texto;
+
+                
+
+            });    
+
+            $('.Imagen').removeAttr('onclick').click(function () { 
+
+                $("#myModal").modal('show');;
+
+                var Imagen = $(this).parent().children()[0].childNodes[0].src;
+                var Titulo = $(this).parent().children()[1].children[0].innerHTML;
+                var Texto = $(this).parent().children()[1].children[2].innerHTML;
+
+                $("h2.modal-title")[0].innerHTML = Titulo;
+                $("img.imagenmodal")[0].src = Imagen;
+                $("p.textomodal")[0].innerHTML = Texto;
+            }); 
+
+
+
+        </script>
+
+    }
+
+

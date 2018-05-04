@@ -1,0 +1,176 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+@{
+    /**/
+
+    ViewBag.Title = "Recursos";
+    Layout = "~/Views/Shared/_LayoutFE.cshtml";
+    Session["menuopt"] = "recursos";
+}
+@Html.Partial("_ImagenCabecera")
+
+<div id="MensajeCabecera">
+
+</div>
+
+
+<div class="section teacher-course section-padding">
+    <div class="container teacher-course-wrapper">
+
+        <div class="accordion-faq">
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="accordion-1" class="panel-group accordion">
+
+                        <div class="panel">
+                            <div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-1" href="#collapse-1-1" aria-expanded="false" class="accordion-toggle collapsed">Programas para descargar</a></h5></div>
+                            <div id="collapse-1-1" aria-expanded="false" style="height: 0px;" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <!--PROGRAMAS PARA DESCARGAR-->
+                                    @foreach (var item in Model)
+                                {
+                                    if (item.idEnviado == "ProgramasParaDescargar")
+                                    {
+
+                                        <div class="margin-b-5">
+                                            <a href="@item.accion" target="_blank">
+                                                <i class="fa fa-download"></i> @item.texto
+                                            </a>
+                                        </div>
+
+                                }
+
+                            }
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--TECNICAS DE ESTUDIO-->
+                        <div class="panel">
+                            <div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-1" href="#collapse-1-2" aria-expanded="false" class="accordion-toggle collapsed">Técnicas de estudio</a></h5></div>
+                            <div id="collapse-1-2" style="height: 0px;" aria-expanded="false" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @foreach (var item in Model)
+                                {
+                                    if (item.idEnviado == "TecnicasDeEstudio")
+                                    {
+
+                                        <div class="margin-b-5">
+                                            <a href="@item.accion" target="_blank">
+                                                <i class="fa fa-file-pdf-o"></i> @item.texto
+                                            </a>
+                                        </div>
+
+                                }
+
+                            }
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--PLANTILLAS DE EXAMEN-->
+                        <div class="panel">
+                            <div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-1" href="#collapse-1-3" aria-expanded="false" class="accordion-toggle collapsed">Plantillas de examen</a></h5></div>
+                            <div id="collapse-1-3" style="height: 0px;" aria-expanded="false" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                    @foreach (var item in Model)
+                                {
+                                    if (item.idEnviado == "PlantillasDeExamen")
+                                    {
+
+                                        <div class="margin-b-5">
+                                            <a href="@item.accion" target="_blank">
+                                                <i class="fa fa-file-word-o"></i> @item.texto
+                                            </a>
+                                        </div>
+
+                                }
+
+                            }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-6">
+                    <div id="accordion-2" class="panel-group accordion">
+
+                        <!--EXAMENES DE OTRAS CONVOCATORIAS-->
+                        <div class="panel">
+                            <div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapse-2-4" aria-expanded="false" class="accordion-toggle collapsed">Exámenes de otras convocatorias</a></h5></div>
+                            <div id="collapse-2-4" style="" aria-expanded="false" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                      @foreach (var item in Model)
+                                {
+                                    if (item.idEnviado == "ExamenesDeOtrasConvocatorias")
+                                    {
+
+                                        <div class="margin-b-5">
+                                            <a href="@item.accion" target="_blank">
+                                                <i class="fa fa-file-text-o"></i> @item.texto
+                                            </a>
+                                        </div>
+
+                                }
+
+                            }
+                                        
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--OTROS RECURSOS-->
+                        <div class="panel">
+                            <div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapse-2-5" aria-expanded="false" class="accordion-toggle collapsed">Otros recursos</a></h5></div>
+                            <div id="collapse-2-5" style="height: 0px;" aria-expanded="false" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                      @foreach (var item in Model)
+                                {
+                                    if (item.idEnviado == "OtrosRecursos")
+                                    {
+
+                                        <div class="margin-b-5">
+                                            <a href="@item.accion" target="_blank">
+                                                <i class="fa fa-file-zip-o"></i> @item.texto
+                                            </a>
+                                        </div>
+
+                                }
+
+                            }
+                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+
+
+        $(document).ready(function () {
+
+            $("#loader").hide()
+        });
+
+
+    </script>
+}
+

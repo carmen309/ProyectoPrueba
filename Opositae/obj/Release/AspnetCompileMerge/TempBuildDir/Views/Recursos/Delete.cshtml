@@ -1,0 +1,60 @@
+﻿@model Opositae.Models.Enlace
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Recurso</h2>
+
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.texto)
+        </dd>
+
+        <dt>
+            Nombre Del Archivo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anteEnlace)
+        </dd>
+
+        <dt>
+            Dirección Del Archivo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accion)
+        </dd>
+
+        
+
+        <dt>
+            Tipo De Recurso
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idEnviado)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+
+@{
+    ViewBag.Title = "Pie D2 Página";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pie De Página</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.controlador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.claseCss)
+        </th>
+        <th></th>
+    </tr>
+
+    <tr><th colspan="6">OPOSITAE</th></tr>
+
+    @foreach (var item in Model.Where(x => x.anteEnlace == ("OPOSITAE")))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.texto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.accion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.controlador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.claseCss)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+            </td>
+        </tr>
+    }
+
+
+    <tr><th colspan="6">ÚLTIMAS CONVOCATORIAS</th></tr>
+
+    @foreach (var item in Model.Where(x => x.anteEnlace == ("ULTIMAS CONVOCATORIAS")))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.texto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.accion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.controlador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.claseCss)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+            </td>
+        </tr>
+    }
+
+    <tr><th colspan="6">NUESTRAS REDES SOCIALES</th></tr>
+    @foreach (var item in Model.Where(x => x.anteEnlace == ("NUESTRAS REDES SOCIALES")))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.texto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.accion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.controlador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.claseCss)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.EnlaceId })
+            </td>
+        </tr>
+    }
+
+</table>

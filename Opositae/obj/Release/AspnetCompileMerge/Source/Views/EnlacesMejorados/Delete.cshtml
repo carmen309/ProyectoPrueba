@@ -1,0 +1,62 @@
+﻿@model Opositae.Models.EnlaceMejorado
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Cuadro Publicitario</h2>
+
+<h3>¿Estas seguro de que deseas eliminarlo?</h3>
+<div>
+    <h4>Datos del Cuadro Publicitario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enlace.texto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enlace.texto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enlace.anteEnlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enlace.anteEnlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enlace.idEnviado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enlace.idEnviado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imagen)
+        </dt>
+
+        <dd>
+            <img src=@ViewBag.imagenes.imagenPath() alt="Sample Image" width=" 100" />
+        </dd>
+
+
+
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

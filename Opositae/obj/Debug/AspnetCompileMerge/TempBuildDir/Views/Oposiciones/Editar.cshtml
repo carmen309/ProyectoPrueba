@@ -1,0 +1,76 @@
+﻿@model Opositae.Models.Oposicion
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Boolean check = false;
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Oposiciones")">Oposiciones</a></li>
+    <li class="breadcrumb-item active">Editar</li>
+</ol>
+<div class="row">
+    <div class="text-right margin-b-10">
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Oposiciones")'">
+            <i class="material-icons btn__icon--left">arrow_back</i> Volver
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <h5>Editar oposición</h5>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+
+                <fieldset class="form-group">
+                    @Html.LabelFor(model => model.Nombre, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(model => model.Nombre)
+                </fieldset>
+
+                <fieldset class="form-group">
+                    @Html.Label("Categorías")
+                    <div class="clearfix"></div>
+                    @foreach (var item in (SelectList)ViewBag.Categorias)
+                    {
+                        foreach (var opocat in Model.OposicionesCategorias)
+                        { 
+                            if (opocat.Categoria.Id == Int32.Parse(item.Value))
+                            {
+                                check = true;
+                            }
+                        }
+                        <div class="col-md-6">
+                            <input type="checkbox" name="categoriasSeleccionadas" value="@item.Value" checked="@check"/>
+                            @item.Text
+                        </div>
+                        check = false;
+                    }
+                </fieldset>
+
+
+
+                <fieldset class="form-check">
+                    @Html.CheckBoxFor(model => model.Activa, new { @checked = "checked" })
+                    @Html.LabelFor(model => model.Activa, new { @class = "control-label" })
+
+                    @Html.ValidationMessageFor(model => model.Activa)
+                </fieldset>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success">
+                        <i class="material-icons btn__icon--left">create</i> Guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

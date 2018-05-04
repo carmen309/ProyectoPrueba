@@ -1,0 +1,153 @@
+﻿@model Opositae.Models.TotalContacto
+@{
+    ViewBag.Title = "Contacto";
+    Layout = "~/Views/Shared/_LayoutFE.cshtml";
+    Session["menuopt"] = "contacto";
+
+}
+@Html.Partial("_ImagenCabecera")
+
+
+@if (System.Web.HttpContext.Current.Session["CorreoContactoEnviado"] != null) //Si existe...
+{
+    <script>
+        alert("Su mensaje ha sido enviado correctamente")
+    </script>
+
+    Session.Remove("CorreoContactoEnviado"); //La destruimos...
+
+
+}
+
+<!--<div id="MensajeCabecera"></div>-->
+
+<div class="section section-padding contact-main">
+    <div class="container">
+        <div class="contact-main-wrapper">
+            <div class="row contact-method">
+
+                @foreach (var item in Model.CuadrosInformacion)
+                {
+
+                    <div class="col-md-4">
+
+                        <div class="method-item">
+                            <i class="fa @item.claseCss"></i>
+
+                            <p class="sub">@item.anteEnlace</p>
+
+                            <div class="detail">
+                                @item.texto
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+
+
+
+
+
+                <!--  <div class="col-md-4">
+
+                      <div class="method-item">
+                          <i class="fa fa-map-marker"></i>
+
+                          <p class="sub">DÓNDE ESTAMOS</p>
+
+                          <div class="detail">
+                              <p>C/ Fuente Don Diego nºX</p>
+
+                              <p>23003 - Jaén, Jaén</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="method-item">
+                          <i class="fa fa-phone"></i>
+
+                          <p class="sub">LLÁMANOS</p>
+
+                          <div class="detail">
+                              <p>953 232 323</p>
+
+                              <p>666 555 444</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="method-item">
+                          <i class="fa fa-envelope"></i>
+
+                          <p class="sub">EN LA RED</p>
+
+                          <div class="detail">
+                              <p>info@opositae.com</p>
+
+                              <p>consultas@opositae.com</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  -->
+            </div>
+            @using (Html.BeginForm("FormularioContac", "Contactos", FormMethod.Post, htmlAttributes: new { @class = "bg-w-form contact-form" }))
+            {
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group"><label class="control-label form-label">NOMBRE <span class="highlight">*</span></label><input required type="text" name="Nombre" placeholder="" class="form-control form-input" /><!--label.control-label.form-label.warning-label(for="") Warning for the above !--></div>
+
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group"><label class="control-label form-label">CORREO <span class="highlight">*</span></label><input required type="email" name="Correo" placeholder="" class="form-control form-input" /><!--label.control-label.form-label.warning-label(for="")--></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label form-label">MOTIVO</label><select name="Motivo" class="form-control form-input selectbox">
+                                <option value="NoMotivo">Selecciona...</option>
+                                <option value="Información sobre una oposición en concreto">Información sobre una oposición en concreto</option>
+                                <option value="Consulta sobre X asunto">Consulta sobre X asunto</option>
+                                <option value="Duda relacionada con el funcionamiento interno de la plataforma">Duda relacionada con el funcionamiento interno de la plataforma</option>
+                                <option value="Otro Motivo">Otro</option>
+                            </select><!--label.control-label.form-label.warning-label(for="", hidden)-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group"><label class="control-label form-label">ASUNTO</label><input required name="Asunto" type="text" placeholder="" class="form-control form-input" /><!--label.control-label.form-label.warning-label(for="", hidden)--></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="contact-question form-group"><label class="control-label form-label">MENSAJE <span class="highlight">*</span></label><textarea required name="Mensaje" class="form-control form-input"></textarea></div>
+                    </div>
+                </div>
+                <div class="contact-submit">
+                    <button type="submit" class="btn btn-contact btn-green"><span>ENVIAR</span></button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="section contact-map">
+    <iframe class="contact-map" src="@Model.MiContacto.Mapa" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <!--https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.1594124214503!2d-3.788470310111151!3d37.76286016808522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6dd7769d9c397b%3A0x5543fb0c44da2fae!2sCalle+Fuente+de+Don+Diego%2C+Ja%C3%A9n!5e0!3m2!1ses!2ses!4v1510229335297-->
+
+</div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu6tm60TzeUo9rWpLnrQ7mrFn4JPMVje4&amp;amp;sensor=false"></script>
+<script src="../Content/Frontend/js/pages/contact.js"></script>
+
+
+@Scripts.Render("~/Content/js_fe_contacto")
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#loader").hide()
+        })
+    </script>
+
+}

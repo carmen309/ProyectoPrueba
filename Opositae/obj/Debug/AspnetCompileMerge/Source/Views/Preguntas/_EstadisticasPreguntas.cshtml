@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div> 
+        @foreach (string linea in ViewBag.Estadisticas)
+        {
+            @Html.Raw(linea)
+        }
+    </div>
+</body>
+</html>

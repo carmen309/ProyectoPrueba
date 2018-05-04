@@ -1,0 +1,28 @@
+﻿@model Opositae.Models.Enlace
+@{
+
+       Layout = null; //Para que no pille el general
+}
+
+<div class="section nav-subscribe">
+    <div class="container">
+        <div class="nav-subscribe-wrapper">
+            <div class="nav-subscribe-left"><p class="subscribe-text">@Model.texto</p></div>
+            <div class="nav-subscribe-right">
+                <button onclick="window.location.href = '@Url.Action(Model.accion, Model.controlador)'" class="btn btn-green btn-bold"><span>@Model.idEnviado</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="section nav-subscribe">
+    <div class="container">
+        <div class="nav-subscribe-wrapper">
+            <div class="nav-subscribe-left"><p class="subscribe-text">Infórmate <b class="focus">sin compromiso</b> sobre las oposiciones que te interesan</p></div>
+            <div class="nav-subscribe-right">
+                <button class="btn btn-green btn-bold"><span>PEDIR INFORMACIÓN</span></button>
+            </div>
+        </div>
+    </div>
+</div>-->

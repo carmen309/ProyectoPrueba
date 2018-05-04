@@ -1,0 +1,75 @@
+﻿@model Opositae.Models.Menu2
+@{
+
+    Layout = null; //Para que no pille el general
+
+    if (Session["menuopt"] == null)
+    {
+        Session["menuopt"] = "0";
+    }
+    string activaFront = "active";
+
+}
+
+
+<div class="header-main-wrapper">
+    <div class="navbar-heade">
+        <div class="logo pull-left"><a href="@Url.Action(Model.MisEnlacesMejorados.First().enlace.accion, Model.MisEnlacesMejorados.First().enlace.controlador)" class="header-logo">
+            <img src="@Model.MisEnlacesMejorados.First().imagen.imagenPath()" alt="" /></a></div>
+        <button type="button" data-toggle="collapse" data-target=".navigation" class="navbar-toggle edugate-navbar" style="background-color: #86bc42;">
+
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+</div>
+    <nav class="navigation collapse navbar-collapse pull-right">
+        <ul class="nav-links nav navbar-nav">
+
+            @foreach(var item in Model.MisEnlaces)
+            {
+                {activaFront = (Session["menuopt"].ToString() == @item.texto) ? "active" : "";}
+                <li class="@activaFront"><a href="@Url.Action(item.accion, item.controlador)" class="main-menu">@item.texto</a></li>
+            }
+
+
+        </ul>
+    </nav>
+</div>
+
+
+
+<!--<div class="header-main-wrapper">
+    <div class="navbar-heade">
+        <div class="logo pull-left"><a href="index.html" class="header-logo"><img src="/Content/Frontend/images/logo-color-1.png" alt="" /></a></div>
+        <button type="button" data-toggle="collapse" data-target=".navigation" class="navbar-toggle edugate-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+    </div>
+    <nav class="navigation collapse navbar-collapse pull-right">
+        <ul class="nav-links nav navbar-nav">
+             DELANTE ARRO
+            {activaFront = (Session["menuopt"].ToString() == "inicio") ? "active" : "";}
+            <li class="@activaFront"><a href="@Url.Action("Inicio", "Home")" class="main-menu">Inicio</a></li>
+            {activaFront = (Session["menuopt"].ToString() == "nosotros") ? "active" : "";}
+            <li class="@activaFront"><a href="@Url.Action("Nosotros", "Home")" class="main-menu">Nosotros</a></li>
+            {activaFront = (Session["menuopt"].ToString() == "blog") ? "active" : "";}
+            <li class="@activaFront"><a href="@Url.Action("Blog", "Home")" class="main-menu">Blog</a></li>
+            {activaFront = (Session["menuopt"].ToString() == "convocatorias") ? "active" : "";}
+            <li class="@activaFront"><a href="@Url.Action("Convocatorias", "Home")" class="main-menu">Convocatorias</a></li>
+            {activaFront = (Session["menuopt"].ToString() == "legislacion") ? "active" : "";}
+            <li class="@activaFront"><a href="@Url.Action("Legislacion", "Home")" class="main-menu">Legislación</a></li>
+            {activaFront = (Session["menuopt"].ToString() == "oposiciones") ? "active" : "";}
+            {activaFront = (Session["menuopt"].ToString() == "contacto") ? "active" : "";}
+            <li class="@activaFront"><a href="@Url.Action("Contacto", "Home")" class="main-menu">Contacto</a></li>
+
+            <!--nooo
+            <!--<li class="button-search"><p class="main-menu"><i class="fa fa-search"></i></p></li>-->
+            <!--<div class="nav-search hide">
+                    <form>
+                        <input type="text" placeholder="Buscar" class="searchbox" />
+                        <button type="submit" class="searchbutton fa fa-search"></button>
+                    </form>
+                </div>
+                noooo
+        </ul>
+    </nav>
+</div>-->

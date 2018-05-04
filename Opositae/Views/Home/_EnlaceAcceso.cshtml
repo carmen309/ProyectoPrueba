@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+@{
+
+    Layout = null; //Para que no pille el general
+}
+
+@foreach (var item in Model)
+{
+
+    <div class="footer-top-wrapper">
+        <div class="footer-top-left">
+            <p class="footer-top-focus">@item.texto</p>
+
+            <p class="footer-top-text">@item.anteEnlace</p>
+        </div>
+        <div class="footer-top-right">
+            <button style="border:none; border-radius:0px;" onclick="window.location.href = '@Url.Action(item.accion, item.controlador)'" class="btn btn-blue btn-bold"><span>@item.idEnviado</span></button>
+        </div>
+    </div>
+
+
+}
+    <!--<div class="footer-top-wrapper">
+        <div class="footer-top-left">
+            <p class="footer-top-focus">ACCEDE A NUESTROS RECURSOS</p>
+
+            <p class="footer-top-text">Ponemos a tu disposición los mejores recursos y consejos para prepararte en tu oposición!</p>
+        </div>
+        <div class="footer-top-right">
+            <button onclick="#" class="btn btn-blue btn-bold"><span>ACCEDER AHORA</span></button>
+        </div>
+    </div>-->

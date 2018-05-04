@@ -1,0 +1,333 @@
+﻿@model Opositae.Models.PiePagina
+@{
+
+    Layout = null; //Para que no pille el general
+
+    if (Session["menuopt"] == null)
+    {
+        Session["menuopt"] = "0";
+    }
+    string activaFront = "active";
+
+}
+
+<!--VENTANA MODAL-->
+<div class="container">
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModalPie" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+
+                </div>
+                <div class="modal-body">
+
+
+                    <img src="" alt="" class="img-responsive imagenmodalPie img-thumbnail" />
+                    <h2 class="modal-titlePie">TITULO NOTICIA</h2>
+                    <hr />
+                    <p class="textomodalPie"></p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="footer-main-wrapper">
+    <div class="row">
+        <div class="col-2">
+            <div class="col-md-3 col-sm-6 col-xs-6 sd380">
+                <div class="edugate-widget widget">
+                    <div class="title-widget">OPOSITAE</div>
+                    <div class="content-widget">
+
+                        @foreach (var item in Model.EnlacesPie)
+                        {
+                            if (item.anteEnlace == "OPOSITAE" && item.claseCss == null)
+                            {
+                                <p>@item.texto</p>
+                            }
+
+                        }
+
+                        <div class="info-list">
+                            <ul class="list-unstyled">
+
+                                @foreach (var item in Model.EnlacesPie)
+                                {
+                                    if (item.anteEnlace == "OPOSITAE" && item.claseCss != null)
+                                    {
+                                        <li><i class="fa @item.claseCss"></i><a style="cursor:default; text-decoration:none;">@item.texto</a></li>
+
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6 sd380">
+                <div class="gallery-widget widget">
+                    <div class="title-widget">ÚLTIMAS CONVOCATORIAS</div>
+                    <div class="content-widget">
+                        <div class="useful-link-list">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <ul class="list-unstyled">
+                                        @foreach (var item in Model.EnlacesPie)
+                                        {
+                                            if (item.anteEnlace == "ULTIMAS CONVOCATORIAS")
+                                            {
+                                                <li><i class="fa @item.claseCss"></i><a href="@Url.Action(item.accion, item.controlador)">@item.texto</a></li>
+                                            }
+
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-2">
+            <div class="col-md-3 col-sm-6 col-xs-6 sd380">
+                <div class="useful-link-widget widget">
+                    <div class="title-widget">ENTRADAS DEL BLOG</div>
+                    <div class="content-widget">
+                        <div class="useful-link-list">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <ul class="list-unstyled">
+
+                                        @foreach (var item in Model.UltimasEntradas)
+                                        {
+                                            <li><i class="fa fa-angle-right"></i><a class="EnlaceModalPie" style="cursor:pointer" id="@item.Id">@item.Titulo</a></li>
+
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6 sd380">
+                <div class="mailing-widget widget">
+                    <div class="title-widget">NUESTRAS REDES SOCIALES</div>
+                    <div class="content-wiget">
+
+                        @foreach (var item in Model.EnlacesPie)
+                        {
+                            if (item.anteEnlace == "NUESTRAS REDES SOCIALES" && item.claseCss == null)
+                            {
+                                <p>@item.texto</p>
+                            }
+
+                        }
+
+                        <div class="socials">
+                            @foreach (var item in Model.EnlacesPie)
+                            {
+                                if (item.anteEnlace == "NUESTRAS REDES SOCIALES" && item.claseCss != null)
+                                {
+                                    <a href="@item.Imprimete()" target="_blank" class="@item.texto"><i class="fa @item.claseCss"></i></a>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hyperlink">
+    <div class="pull-left hyper-left">
+        <ul class="list-inline">
+            @foreach (var item in Model.EnlacesMenu2.MisEnlaces)
+            {
+                <li><a href="@Url.Action(item.accion, item.controlador)">@item.texto</a></li>
+
+            }
+        </ul>
+    </div>
+
+
+
+</div>
+
+<script>
+
+    $('.EnlaceModalPie').removeAttr('onclick').click(function () {
+
+        IdNoticia = this.id;
+
+
+        $.ajax({
+
+            method: "POST",
+            url: "/Blog/SacarNoticia",
+            data: { id: IdNoticia },
+            success: function (data) {
+
+                $("h2.modal-titlePie")[0].innerHTML = data["Titulo"];
+                $("img.imagenmodalPie")[0].src = data["Imagen"];
+                $("p.textomodalPie")[0].innerHTML = data["Texto"];
+                $("#myModalPie").modal('show');
+
+            }
+        })
+
+    });
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="container">
+    <div class="footer-main-wrapper">
+        <div class="row">
+            <div class="col-2">
+                <div class="col-md-3 col-sm-6 col-xs-6 sd380">
+                    <div class="edugate-widget widget">
+                        <div class="title-widget">OPOSITAE</div>
+                        <div class="content-widget">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper euismod sagittis.</p>
+
+                            <div class="info-list">
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-envelope-o"></i><a href="#">info@opositae.com</a></li>
+                                    <li><i class="fa fa-phone"></i><a href="#">666 555 444</a></li>
+                                    <li>
+                                        <i class="fa fa-map-marker"></i><a href="#">
+                                            <p>C/ Fuente Don Diego nºx</p>
+
+                                            <p>23003 - Jaén, Jaén</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6 sd380">
+                    <div class="useful-link-widget widget">
+                        <div class="title-widget">ENTRADAS DEL BLOG</div>
+                        <div class="content-widget">
+                            <div class="useful-link-list">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sempter euismod sagittis.</a></li>
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sempter.</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="col-md-3 col-sm-6 col-xs-6 sd380">
+                    <div class="gallery-widget widget">
+                        <div class="title-widget">ÚLTIMAS CONVOCATORIAS</div>
+                        <div class="content-widget">
+                            <div class="useful-link-list">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Administración Local</a></li>
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Prisiones</a></li>
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Hacienda</a></li>
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Justicia</a></li>
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Policía y Guardia Civil</a></li>
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Bomberos</a></li>
+                                            <li><i class="fa fa-angle-right"></i><a href="#">Sanidad</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6 sd380">
+                    <div class="mailing-widget widget">
+                        <div class="title-widget">NUESTRAS REDES SOCIALES</div>
+                        <div class="content-wiget">
+                            <p>Aquí se puede colocar otra información de interés o algún plugin con los ultimos tweets de twitter, por ejemplo.</p>
+
+
+
+                            <div class="socials">
+                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hyperlink">
+        <div class="pull-left hyper-left">
+            <ul class="list-inline">
+                <li><a href="">INICIO</a></li>
+                <li><a href="">NOSOTROS</a></li>
+                <li><a href="">BLOG</a></li>
+                <li><a href="">CONVOCATORIAS</a></li>
+                <li><a href="">LEGISLACIÓN</a></li>
+                <li><a href="">RECURSOS</a></li>
+                <li><a href="">CONTACTO</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>-->

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Opositae.Models.Enlace>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Enlace De Acceso</h2>
+
+<p>
+  <!--  Html.ActionLink("Crear Nuevo", "Create")-->
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.texto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.anteEnlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.controlador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idEnviado)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.texto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.anteEnlace)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.controlador)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idEnviado)
+        </td>
+        
+
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.EnlaceId }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.EnlaceId }) 
+            <!--Html.ActionLink("Eliminar", "Delete", new { id=item.EnlaceId })-->
+        </td>
+    </tr>
+}
+
+</table>

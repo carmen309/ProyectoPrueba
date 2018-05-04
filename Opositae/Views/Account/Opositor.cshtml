@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutFE.cshtml";
+}
+
+hola esto es un mensaje de prueba
+
+<div class="section section-padding choose-course padding-reducido">
+    <div class="container">
+        <div class="group-title-index">
+
+            <h2 class="center-title">NO DEJES TODO TU ESFUERZO EN MANOS DE LA SUERTE , TÚ TE SABES EL TEMARIO. ELLA NO. </h2>
+
+            <div class="bottom-title"><i class="bottom-icon fa fa-mortar-board"></i></div>
+        </div>
+        <div class="choose-course-wrapper row">
+            <div class="col-md-4 col-xs-6">
+                <div class="item-course item-2">
+                    <div class="icon-circle">
+                        <div class="icon-background"><i class="icons-img fa fa-user"></i></div>
+                        <div class="info">
+                            <div class="info-back"><a class="Cuenta" style="cursor:pointer">Accede a los datos de tu cuenta y revisa tu plan seleccionado.</a></div>
+                        </div>
+                    </div>
+                    <div class="name-course "><a class="Cuenta" style="cursor:pointer">Mi Cuenta</a><i class="fa fa-long-arrow-right"></i></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6">
+                <div class="item-course item-1">
+                    <div class="icon-circle">
+                        <div class="icon-background"><i class="icons-img fa fa fa-tasks"></i></div>
+                        <div class="info">
+                            <div class="info-back"><a href="@Url.Action("Blog", "Home")">Preparate tu oposición con los mejores tests.</a></div>
+                        </div>
+                    </div>
+                    <div class="name-course"><a href="@Url.Action("Blog", "Home")">Tests</a><i class="fa fa-long-arrow-right"></i></div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xs-6">
+                <div class="item-course item-3">
+                    <div class="icon-circle">
+                        <div class="icon-background"><i class="icons-img fa fa-line-chart"></i></div>
+                        <div class="info">
+                            <div class="info-back"><a class="Estadisticas" style="cursor:pointer">Consulta los resultados de los tests realizados.</a></div>
+                        </div>
+                    </div>
+                    <div class="name-course"><a class="Estadisticas" style="cursor:pointer">Mis Estadísticas</a><i class="fa fa-long-arrow-right"></i></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <!-- Modal -->
+        <div class="modal fade ModalPrecios" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 style="display:inline-block" class="modal-title center-title">¡SELECCIONA TU MEJOR PLAN!</h3>
+                        <button type="button" class="close" data-dismiss="modal" style="color:white;"><i class="fa fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+           
+            
+            $("#loader").hide("slow");
+            $(".modal-body").load("_MenuPrecios");
+            $("#myModal").modal("show");
+
+
+            $(".Cuenta").click(function () {
+
+                $(".section").load("_MiCuenta");
+
+            });
+
+            $(".Estadisticas").click(function () {
+
+                $(".section").load("_MisEstadisticas");
+
+            });
+
+            
+
+        })
+
+       
+    </script>
+
+}

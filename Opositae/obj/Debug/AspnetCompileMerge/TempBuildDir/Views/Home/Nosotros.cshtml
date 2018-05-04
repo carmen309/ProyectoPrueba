@@ -1,0 +1,72 @@
+﻿@model Opositae.Models.Nosotros
+@{
+                /**/
+
+                ViewBag.Title = "Nosotros";
+                Layout = "~/Views/Shared/_LayoutFE.cshtml";
+                Session["menuopt"] = "nosotros";
+}
+
+@Html.Partial("_ImagenCabecera")
+<!--Html.Partial("_MensajeCabecera")-->
+<div id="MensajeCabecera">
+
+
+</div>
+
+<div class="section intro-edu">
+    <div class="container">
+        <div class="intro-edu-wrapper">
+            <div class="row">
+                <div class="col-md-5"><img src="@ViewBag.imagePath" alt="" class="intro-image fadeInLeft animated wow" /></div>
+                <div class="col-md-7">
+                    <div class="intro-title">@Model.Titulo</div>
+                    <div class="intro-content">
+                        <span id="MiTexto">
+                            @Html.Raw(Model.Texto)
+
+
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="section intro-edu">
+    <div class="container">
+        <div class="intro-edu-wrapper">
+            <div class="row">
+                <div class="col-md-5"><img src="/Content/Frontend/images/nosotros.jpg" alt="" class="intro-image fadeInLeft animated wow" /></div>
+                <div class="col-md-7">
+                    <div class="intro-title">¿QUÉ ES <b>OPOSITAE</b> ?</div>
+                    <div class="intro-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus odio, placerat ac enim tincidunt, gravida elementum justo. Phasellus aliquet dolor nec arcu cursus, a ultricies nisi rutrum. Pellentesque maximus condimentum suscipit. Maecenas a iaculis urna. Sed mollis metus odio, vitae dapibus sapien venenatis et. Donec vel nisl elementum, rutrum turpis eget, elementum nisl. Quisque non nunc eros. Donec fermentum pulvinar porttitor. Sed euismod, dui nec imperdiet malesuada, sapien eros pellentesque libero, et feugiat purus purus id augue. Praesent eget tortor faucibus, auctor lorem a, scelerisque dolor.</p>
+
+                        <p>Curabitur vitae viverra odio. Maecenas pellentesque eu nisi non dapibus. Suspendisse id posuere massa. Suspendisse interdum consectetur tortor, quis vulputate quam rhoncus sed. Curabitur ac tortor et eros sagittis hendrerit et vel leo. Donec sollicitudin fermentum arcu, in iaculis urna varius eget. Vestibulum placerat vulputate nibh. Fusce justo enim, sodales vitae nisl vitae, semper suscipit justo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!--NOSOTROS ICONOS-->
+
+<div class="section why-choose-us">
+    <div class="why-choose-us-wrapper-bottom background-opacity">
+        <div class="container" id="NosotrosIconos">
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#loader").hide()
+        })
+    </script>
+
+}
+
+
